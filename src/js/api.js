@@ -4,29 +4,39 @@ function kirimAsesmen(){
     return null
 }
 
-function statsAntrian(){
+function displayAntrian(){
     const apiPath = API_HOST + '/antrian'
+
     const total = document.getElementById('total-antrian')
     const menunggu = document.getElementById('menunggu')
 
-    fetch(apiPath).then(res => res.json()).then(
-        data => data.statistik).then(stats => {
-            total.innerText = stats.total
-            menunggu.innerText = stats.menunggu
-    })
-}
-
-function detailAntrian(){
     const nama = document.getElementById('nama-dipanggil')
     const nomorAntrian = document.getElementById('nomor-dipanggil')
 
-    const apiPath = API_HOST + '/antrian'
+    const antrianContainer = document.getElementById('antrian-selanjutnya')
+
     fetch(apiPath).then(res => res.json()).then(
-        data => data.data["pemeriksaan_awal"][0]).then(antrian => {
-            console.log(antrian)
-            nomorAntrian.innerText = antrian.kode_antrian
-            nama.innerText = antrian.pendaftaran["pasien"]["nama_lengkap"]})
+        data => [data.statistik, data.data]).then(([stats, dataAntrian]) => {
+            const antrianMenunggu = dataAntrian["menunggu"]
+            const antrianDipanggil = dataAntrian["pemeriksaan_awal"][0]
+
+            total.innerText = stats.total
+            menunggu.innerText = stats.menunggu
+
+            nomorAntrian.innerText = antrianDipanggil.kode_antrian
+            nama.innerText = antrianDipanggil.pendaftaran["pasien"]["nama_lengkap"]
+
+            for (let i = 0; i < 4; i++) {
+                antrianContainer.innerHTML += `
+                    <div class="queue-row">
+                        <span class="num">${antrianDipanggil.kode_antrian}</span>
+                        <div class="divider"></div>
+                        <span class="name">${antrianDipanggil.pendaftaran["pasien"]["nama_lengkap"]}</span>
+                    </div>
+                    `
+                }
+        }
+    )
 }
 
-statsAntrian()
-detailAntrian()
+displayAntrian()
