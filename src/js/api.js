@@ -4,8 +4,8 @@ function kirimAsesmen(){
     return null
 }
 
-function displayAntrian(){
-    const apiPath = API_HOST + '/antrian'
+function displayAntrianUnit(idUnit){
+    const apiPath = API_HOST + '/antrian/unit/' + idUnit
 
     const total = document.getElementById('total-antrian')
     const menunggu = document.getElementById('menunggu')
@@ -18,7 +18,7 @@ function displayAntrian(){
     fetch(apiPath).then(res => res.json()).then(
         data => [data.statistik, data.data]).then(([stats, dataAntrian]) => {
             const antrianMenunggu = dataAntrian["menunggu"]
-            const antrianDipanggil = dataAntrian["pemeriksaan_awal"][0]
+            const antrianDipanggil = dataAntrian["pemeriksaan_awal"]
 
             total.innerText = stats.total
             menunggu.innerText = stats.menunggu
@@ -29,14 +29,12 @@ function displayAntrian(){
             for (let i = 0; i < 4; i++) {
                 antrianContainer.innerHTML += `
                     <div class="queue-row">
-                        <span class="num">${antrianDipanggil.kode_antrian}</span>
+                        <span class="num">${antrianMenunggu[i].kode_antrian}</span>
                         <div class="divider"></div>
-                        <span class="name">${antrianDipanggil.pendaftaran["pasien"]["nama_lengkap"]}</span>
+                        <span class="name">${antrianMenunggu[i].pendaftaran["pasien"]["nama_lengkap"]}</span>
                     </div>
                     `
                 }
         }
     )
 }
-
-displayAntrian()

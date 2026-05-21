@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Display Antrian – Rumah Sakit Viamedika</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/src/output.css">
+  <script src="/src/js/api.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -263,7 +264,14 @@
 
     tick();
     setInterval(tick, 1000);
+
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+
+    const unit = urlParams.get('unit')
+    console.log(unit)
+    displayAntrianUnit(unit)
   </script>
-  <script src="/src/js/api.js"></script>
+  
 </body>
 </html>
