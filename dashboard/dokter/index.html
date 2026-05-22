@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/output.css" rel="stylesheet">
+
+  
+</head>
+
+<body class="bg-gray-200 ">
+  
+<!-- header atas -->
+<div class="bg-gradient-to-r from-[#3BC0A8] to-[#005461] h-20 items-center flex font-poppins rounded-b-4xl shadow-md shadow-gray-400 slide-up">
+   <!--header atas Kiri -->
+    <img src="/src/img/Logoputih.svg" class="w-40 h-40 ml-6 " >
+
+    <!--header atas Kanan -->
+    <div class="text-white ml-auto mr-4 pr-4">
+    <p>Dr. Ahmad Fauzi</p>
+    <p>Dokter Poli Mata</p>
+    </div>
+  <img src="/src/img/fotoprofil.svg" class=" mr-8" >
+</div>
+
+<div class="flex">
+<!-- Kiri Sidebar -->
+<aside class=" text-black  w-70 h-203 p-4 slide-left ">
+
+<div class="ml-6 ">
+  <p class="bg-[#005461] bg-clip-text text-transparent font-medium ">MENU</p>
+  <ul class="mb-4 space-y-6 ">
+    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-5 text-sm slide-left1" ><img src="/src/img/dashboard.svg" class="ml-2"><a href="index.html">Dashboard Dokter</a></li>
+    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-3 text-center flex items-center gap-8 text-sm slide-left2"><img src="/src/img/asesmen.svg" class="ml-3 "> <a href="riwayat-diagnosis.html" >Riyawat Diagnosis</a></li>
+    <li class="bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-8 text-sm slide-left4"><img src="/src/img/laporan.svg" class="ml-3 "> <a href="laporan-harian.html">Laporan Harian</a></li>
+  </ul>
+</div>
+</aside>
+    <main class="flex-1 px-8 py-8">
+
+      <!-- Page Title -->
+      <div class="mb-6">
+        <h1 class="text-2xl font-bold" style="color: #2bb5a0;">Antrian Pasien Dokter</h1>
+        <p class="text-gray-500 text-sm mt-1">dr. Ahmad Fauzi, Sp.M. – Poli Mata</p>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="grid grid-cols-4 gap-4 mb-8">
+        <!-- Menunggu -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex flex-col items-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Menunggu</p>
+          <p class="text-4xl font-bold text-gray-800">09</p>
+          <p class="text-xs text-gray-400 mt-2">Jumlah Pasien</p>
+        </div>
+        <!-- Sudah Dilayani -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex flex-col items-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Sudah Dilayani</p>
+          <p class="text-4xl font-bold text-gray-800">01</p>
+          <p class="text-xs text-gray-400 mt-2">Hari ini</p>
+        </div>
+        <!-- Resep Diterbitkan -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex flex-col items-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Resep Diterbitkan</p>
+          <p class="text-4xl font-bold text-gray-800">01</p>
+          <p class="text-xs text-gray-400 mt-2">Ke apotek</p>
+        </div>
+        <!-- Sedang Dilayani -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex flex-col items-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Sedang Dilayani</p>
+          <p class="text-4xl font-bold text-gray-800">02</p>
+          <p class="text-xs text-gray-400 mt-2">Hari ini</p>
+        </div>
+      </div>
+
+      <!-- Patient Queue Table -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <!-- Table Header -->
+        <div class="flex items-center justify-between px-6 py-4" style="background-color: #1a7a6e;">
+          <div class="flex items-center gap-2 text-white font-semibold text-base">
+            <!-- stethoscope icon -->
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+            Pasien Menunggu Pemeriksaan Dokter
+          </div>
+          <span class="text-white text-sm">Sabtu, 25 April 2026</span>
+        </div>
+
+        <!-- Table -->
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-100">
+              <th class="text-left px-6 py-4 text-gray-500 font-semibold text-xs uppercase tracking-wider">No. Antrian</th>
+              <th class="text-left px-6 py-4 text-gray-500 font-semibold text-xs uppercase tracking-wider">Nama Pasien</th>
+              <th class="text-left px-6 py-4 text-gray-500 font-semibold text-xs uppercase tracking-wider">Keluhan</th>
+              <th class="text-left px-6 py-4 text-gray-500 font-semibold text-xs uppercase tracking-wider">Hasil Asesmen</th>
+              <th class="text-left px-6 py-4 text-gray-500 font-semibold text-xs uppercase tracking-wider">Status</th>
+              <th class="text-left px-6 py-4 text-gray-500 font-semibold text-xs uppercase tracking-wider">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1 -->
+            <tr class="border-b border-gray-50">
+              <td class="px-6 py-5 text-gray-700">A-001</td>
+              <td class="px-6 py-5 text-gray-800 font-medium">Budi Santoso</td>
+              <td class="px-6 py-5 text-gray-600">Penglihatan saya buram<br>saat sore hari</td>
+              <td class="px-6 py-5 text-gray-600 text-xs">TD: 120/80 &bull; N: 78 &bull; S: 36.7°C</td>
+              <td class="px-6 py-5">
+                <span class="px-4 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500">Selesai</span>
+              </td>
+              <td class="px-6 py-5 text-gray-500 font-medium">Diteruskan</td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="border-b border-gray-50">
+              <td class="px-6 py-5 text-gray-700">A-002</td>
+              <td class="px-6 py-5 text-gray-800 font-medium">Dewi Lestari</td>
+              <td class="px-6 py-5 text-gray-600">Mata merah dan berair</td>
+              <td class="px-6 py-5 text-gray-600 text-xs">TD: 130/85 &bull; N: 82 &bull; S: 37.2°C</td>
+              <td class="px-6 py-5">
+                <span class="px-4 py-1.5 rounded-full text-xs font-medium" style="background-color: #fde8cc; color: #c87d2f;">Menunggu</span>
+              </td>
+              <td class="px-6 py-5">
+                <button class="px-5 py-2 rounded-lg text-white text-xs font-semibold" style="background-color: #2bb5a0;">Periksa</button>
+              </td>
+            </tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main> 
+</body>
+  <style>
+  /* 1. Gabungkan animasi slideRight jadi SATU deklarasi yang benar */
+  @keyframes slideRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px); /* Pakai translateX biar presisi di sumbu horizontal */
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* 2. Berikan delay/durasi yang berbeda agar kartu muncul bergantian secara rapi */
+  .slide-right1 {
+    animation: slideRight 0.8s ease-out;
+  }
+  .slide-right2 {
+    animation: slideRight 1.2s ease-out;
+  }
+  .slide-right3 {
+    animation: slideRight 1.6s ease-out;
+  }
+  .slide-right4 {
+    animation: slideRight 2s ease-out;
+  }
+
+  /* --- Animasi Lainnya Tetap Aman --- */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn { animation: fadeIn 1s ease-out; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .slide-up { animation: slideUp 2s ease-out; }
+
+  @keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .zoom-in { animation: zoomIn 0.8s ease-out; }
+
+  @keyframes blurIn {
+    from { opacity: 0; filter: blur(10px); }
+    to { opacity: 1; filter: blur(0); }
+  }
+  .blur-in { animation: blurIn 1s ease-out; }
+
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .slide-left { animation: slideLeft 0.5s ease-out; }
+  .slide-left1 { animation: slideLeft 2s ease-out; }
+  .slide-left2 { animation: slideLeft 2.5s ease-out; }
+  .slide-left3 { animation: slideLeft 3s ease-out; }
+  .slide-left4 { animation: slideLeft 3.5s ease-out; }
+</style>
+<script>
+function openModal() {
+  const modal = document.getElementById("modal");
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+}
+
+function closeModal() {
+  const modal = document.getElementById("modal");
+
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
+}
+</script>
+</html>
