@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/output.css" rel="stylesheet">
+
+  
+</head>
+
+<body class="bg-gray-200 ">
+  
+<!-- header atas -->
+<div class="bg-gradient-to-r from-[#3BC0A8] to-[#005461] h-20 items-center flex font-poppins rounded-b-4xl shadow-md shadow-gray-400 slide-up">
+   <!--header atas Kiri -->
+    <img src="/src/img/Logoputih.svg" class="w-40 h-40 ml-6 " >
+
+    <!--header atas Kanan -->
+    <div class="text-white ml-auto mr-4 pr-4">
+    <p>Dr. Ahmad Fauzi</p>
+    <p>Dokter Poli Mata</p>
+    </div>
+  <img src="/src/img/fotoprofil.svg" class=" mr-8" >
+</div>
+
+<div class="flex">
+<!-- Kiri Sidebar -->
+<aside class=" text-black  w-70 h-203 p-4 slide-left ">
+
+<div class="ml-6 ">
+  <p class="bg-[#005461] bg-clip-text text-transparent font-medium ">MENU</p>
+  <ul class="mb-4 space-y-6 ">
+    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-5 text-sm slide-left1" ><img src="/src/img/dashboard.svg" class="ml-2"><a href="index.html">Dashboard Dokter</a></li>
+    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-3 text-center flex items-center gap-8 text-sm slide-left2"><img src="/src/img/asesmen.svg" class="ml-3 "> <a href="riwayat-diagnosis.html" >Riyawat Diagnosis</a></li>
+    <li class="bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-8 text-sm slide-left4"><img src="/src/img/laporan.svg" class="ml-3 "> <a href="laporan-harian.html">Laporan Harian</a></li>
+  </ul>
+</div>
+</aside>
+
+    <!-- Content -->
+    <main class="flex-1 px-8 py-8">
+
+      <!-- Page Title Row -->
+      <div class="flex items-start justify-between mb-6">
+        <div>
+          <h1 class="text-2xl font-bold" style="color: #2bb5a0;">Laporan Harian</h1>
+          <p class="text-gray-500 text-sm mt-1">Statistik dan Laporan</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <!-- Date Filter -->
+          <div class="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-300 bg-white text-sm text-gray-700 font-medium shadow-sm">
+            <span>25/04/2026</span>
+            <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <!-- Unduh PDF -->
+          <button class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-700 text-sm font-medium shadow-sm hover:bg-gray-50 transition">
+            <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Unduh PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="grid grid-cols-4 gap-4 mb-6">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex flex-col items-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Total Pasien</p>
+          <p class="text-5xl font-bold text-gray-800">09</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex flex-col items-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Selesai Dilayani</p>
+          <p class="text-5xl font-bold text-gray-800">01</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex flex-col items-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Resep Diterbitkan</p>
+          <p class="text-5xl font-bold text-gray-800">01</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex flex-col items-center">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2 text-center">Rata-rata Waktu Periksa (Menit)</p>
+          <p class="text-5xl font-bold text-gray-800">10</p>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid grid-cols-2 gap-4 mb-4">
+
+        <!-- Distribusi Usia (Bar Chart) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div class="flex items-center gap-2 mb-6">
+            <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path stroke-linecap="round" d="M3 9h18M9 21V9"/>
+            </svg>
+            <span class="font-semibold text-gray-700 text-sm">Distribusi Usia</span>
+          </div>
+          <!-- Bar Chart -->
+          <div class="flex items-end justify-around gap-2 h-40 px-2">
+            <!-- 0-17: 0 -->
+            <div class="flex flex-col items-center gap-1 flex-1">
+              <span class="text-xs text-gray-500">0</span>
+              <div class="w-full rounded-t" style="height: 2px; background-color: #a7e8e0;"></div>
+              <span class="text-xs text-gray-500 mt-1">0-17</span>
+            </div>
+            <!-- 18-30: 2 -->
+            <div class="flex flex-col items-center gap-1 flex-1">
+              <span class="text-xs text-gray-500">2</span>
+              <div class="w-full rounded-t" style="height: 80px; background-color: #a7e8e0;"></div>
+              <span class="text-xs text-gray-500 mt-1">18-30</span>
+            </div>
+            <!-- 31-45: 4 (tallest, dark teal) -->
+            <div class="flex flex-col items-center gap-1 flex-1">
+              <span class="text-xs text-gray-500">4</span>
+              <div class="w-full rounded-t" style="height: 140px; background-color: #1a7a6e;"></div>
+              <span class="text-xs text-gray-500 mt-1">31-45</span>
+            </div>
+            <!-- 46-60: 3 -->
+            <div class="flex flex-col items-center gap-1 flex-1">
+              <span class="text-xs text-gray-500">3</span>
+              <div class="w-full rounded-t" style="height: 110px; background-color: #a7e8e0;"></div>
+              <span class="text-xs text-gray-500 mt-1">46-60</span>
+            </div>
+            <!-- 60+: 1 -->
+            <div class="flex flex-col items-center gap-1 flex-1">
+              <span class="text-xs text-gray-500">1</span>
+              <div class="w-full rounded-t" style="height: 40px; background-color: #a7e8e0;"></div>
+              <span class="text-xs text-gray-500 mt-1">60+</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Distribusi Keluhan (Horizontal Bar) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div class="flex items-center gap-2 mb-5">
+            <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path stroke-linecap="round" d="M3 9h18M9 21V9"/>
+            </svg>
+            <span class="font-semibold text-gray-700 text-sm">Distribusi Keluhan</span>
+          </div>
+          <div class="flex flex-col gap-3">
+            <!-- Miopia: 4 -->
+            <div class="flex items-center gap-3">
+              <span class="text-sm text-gray-600 w-32">Miopia</span>
+              <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+                <div class="h-full rounded-full" style="width: 80%; background-color: #1a4a6e;"></div>
+              </div>
+              <span class="text-sm text-gray-600 w-4 text-right">4</span>
+            </div>
+            <!-- Hipermetropia: 3 -->
+            <div class="flex items-center gap-3">
+              <span class="text-sm text-gray-600 w-32">Hipermetropia</span>
+              <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+                <div class="h-full rounded-full" style="width: 60%; background-color: #2bb5a0;"></div>
+              </div>
+              <span class="text-sm text-gray-600 w-4 text-right">3</span>
+            </div>
+            <!-- Astigmatisme: 2 -->
+            <div class="flex items-center gap-3">
+              <span class="text-sm text-gray-600 w-32">Astigmatisme</span>
+              <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+                <div class="h-full rounded-full" style="width: 40%; background-color: #e05c1a;"></div>
+              </div>
+              <span class="text-sm text-gray-600 w-4 text-right">2</span>
+            </div>
+            <!-- Konjungtivitis: 1 -->
+            <div class="flex items-center gap-3">
+              <span class="text-sm text-gray-600 w-32">Konjungtivitis</span>
+              <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+                <div class="h-full rounded-full" style="width: 20%; background-color: #1a5a9e;"></div>
+              </div>
+              <span class="text-sm text-gray-600 w-4 text-right">1</span>
+            </div>
+            <!-- Pterigium: 1 -->
+            <div class="flex items-center gap-3">
+              <span class="text-sm text-gray-600 w-32">Pterigium</span>
+              <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+                <div class="h-full rounded-full" style="width: 20%; background-color: #4a9a1a;"></div>
+              </div>
+              <span class="text-sm text-gray-600 w-4 text-right">1</span>
+            </div>
+            <!-- Lainnya: 0 -->
+            <div class="flex items-center gap-3">
+              <span class="text-sm text-gray-600 w-32">Lainnya</span>
+              <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+                <div class="h-full rounded-full" style="width: 0%; background-color: #a7e8e0;"></div>
+              </div>
+              <span class="text-sm text-gray-600 w-4 text-right">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Obat paling sering diresepkan -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <div class="flex items-center gap-2 mb-5">
+          <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/>
+          </svg>
+          <span class="font-semibold text-gray-700 text-sm">Obat paling sering diresepkan</span>
+        </div>
+        <div class="flex flex-col gap-3">
+          <!-- Kloramfenikol: 4 -->
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-gray-600 w-40">Kloramfenikol</span>
+            <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+              <div class="h-full rounded-full" style="width: 80%; background-color: #7c3aed;"></div>
+            </div>
+            <span class="text-sm text-gray-600 w-4 text-right">4</span>
+          </div>
+          <!-- Artificial Tears: 3 -->
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-gray-600 w-40">Artificial Tears</span>
+            <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+              <div class="h-full rounded-full" style="width: 60%; background-color: #7c3aed;"></div>
+            </div>
+            <span class="text-sm text-gray-600 w-4 text-right">3</span>
+          </div>
+          <!-- Antazoline: 2 -->
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-gray-600 w-40">Antazoline</span>
+            <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+              <div class="h-full rounded-full" style="width: 40%; background-color: #d4a017;"></div>
+            </div>
+            <span class="text-sm text-gray-600 w-4 text-right">2</span>
+          </div>
+          <!-- Fluorometholone: 1 -->
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-gray-600 w-40">Fluorometholone</span>
+            <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+              <div class="h-full rounded-full" style="width: 20%; background-color: #991b1b;"></div>
+            </div>
+            <span class="text-sm text-gray-600 w-4 text-right">1</span>
+          </div>
+          <!-- Latanoprost: 1 -->
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-gray-600 w-40">Latanoprost</span>
+            <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+              <div class="h-full rounded-full" style="width: 20%; background-color: #2bb5a0;"></div>
+            </div>
+            <span class="text-sm text-gray-600 w-4 text-right">1</span>
+          </div>
+          <!-- Lainnya: 0 -->
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-gray-600 w-40">Lainnya</span>
+            <div class="flex-1 rounded-full h-3 overflow-hidden" style="background-color: #d1f5ef;">
+              <div class="h-full rounded-full" style="width: 0%; background-color: #a7e8e0;"></div>
+            </div>
+            <span class="text-sm text-gray-600 w-4 text-right">0</span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
