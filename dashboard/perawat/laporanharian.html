@@ -16,7 +16,7 @@
     <p>Ns. Nur Wati</p>
     <p>Perawat Poli Mata</p>
     </div>
-  <img src="fotoprofil.svg" class=" mr-8" >
+  <img src="/src/img/fotoprofil.svg" class=" mr-8" >
 </div>
 
 <div class="flex">
@@ -26,13 +26,13 @@
 <div class="ml-6 ">
   <p class="bg-[#005461] bg-clip-text text-transparent font-medium ">UTAMA</p>
   <ul class="mb-4 space-y-6 ">
-    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-5 text-sm slide-left1" ><img src="dashboard.svg" class="ml-2"><a href="index.html"> Dashboard Antrian</a></li>
-    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-3 text-center flex items-center gap-8 text-sm slide-left2"><img src="asesmen.svg" class="ml-3 "> <a href="asesmenpasien.html " >Asesmen Pasien</a></li>
+    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-5 text-sm slide-left1" ><img src="/src/img/dashboard.svg" class="ml-2"><a href="index.html"> Dashboard Antrian</a></li>
+    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-3 text-center flex items-center gap-8 text-sm slide-left2"><img src="/src/img/asesmen.svg" class="ml-3 "> <a href="asesmenpasien.html " >Asesmen Pasien</a></li>
   </ul><br>
   <p class="bg-[#005461] font-medium bg-clip-text text-transparent text-base ">REKAM MEDIS</p>
   <ul class="mb-4 space-y-6">
-    <li class="bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-10 text-sm slide-left3"><img src="data.svg" class="ml-3 "> <a href="datapasien.html">Data Pasien</a></li>
-    <li class="bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-8 text-sm slide-left4"><img src="laporan.svg" class="ml-3 "> <a href="laporanharian.html">Laporan Harian</a></li>
+    <li class="bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-10 text-sm slide-left3"><img src="/src/img/data.svg" class="ml-3 "> <a href="datapasien.html">Data Pasien</a></li>
+    <li class="bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-8 text-sm slide-left4"><img src="/src/img/laporan.svg" class="ml-3 "> <a href="laporanharian.html">Laporan Harian</a></li>
   </ul>
 </div>
 
@@ -48,13 +48,13 @@
     <div class="text-right ml-auto">      
     <span class="  flex items-center text-black rounded-lg shadow-md shadow-gray-400 mt-3 w-42 pl-4 ml-6 h-9 rounded-lg bg-white  text-xs" >
     <p class=" ">25/04/2026</p>
-    <img src="datatanggalhitam.svg" class=" w-4 h-4 text-right ml-auto mr-4" >
+    <img src="/src/img/datatanggalhitam.svg" class=" w-4 h-4 text-right ml-auto mr-4" >
     </span>
     </div>
     
     <div>
         <span class="  flex items-center text-black rounded-lg shadow-md shadow-gray-400 mt-3 w-32 pl-4 ml-6 h-9 rounded-lg bg-white  text-xs" >
-    <img src="pdf.svg" class=" w-4 h-4 text-left mr-auto " >
+    <img src="/src/img/pdf.svg" class=" w-4 h-4 text-left mr-auto " >
     <p class="text-left mr-auto">Unduh PDF</p>
     </span>
 
@@ -70,7 +70,7 @@
  <div class="grid grid-cols-4 gap-8 mb-8 ">
 
       <div class="bg-white p-2 rounded-3xl shadow-md text-center shadow-gray-400 h-28 slide-right1">
-        <p class="text-black text-xs">TOTAL KUNJUNGAN</p>
+        <p class="text-black text-xs" id="">TOTAL KUNJUNGAN</p>
         <h2 class="text-4xl font-bold text-[#005461] mt-1">04</h2>
         <p class="text-black mt-2 text-xs">Hari ini</p>
       </div>
@@ -103,7 +103,7 @@
 
     <!-- HEADER -->
     <div class="flex items-center gap-2 border-b border-gray-300 pb-3 -mx-4 px-4">
-      <img src="keluhandanusia.svg" class="w-4 h-4">
+      <img src="/src/img/keluhandanusia.svg" class="w-4 h-4">
 
       <p class="text-sm text-gray-700">Distribusi Keluhan</p>
     </div>
@@ -166,14 +166,11 @@
         <div class="flex-1 h-2 bg-[#DDF4EF] rounded-full overflow-hidden">
           <div class="w-[10%] h-full bg-lime-600 rounded-full"></div>
         </div>
-
         <p class="text-xs text-gray-500 w-3">1</p>
       </div>
-
         <!-- KELUHAN 6 -->
       <div class="flex items-center gap-3">
         <p class="w-28 text-xs text-gray-600">Lainnya</p>
-
         <!-- WARNA BAR 6 -->
         <div class="flex-1 h-2 bg-[#DDF4EF] rounded-full overflow-hidden">
           <div class="w-[4%] h-full  rounded-full"></div>
@@ -181,7 +178,6 @@
 
         <p class="text-xs text-gray-500 w-3">0</p>
       </div>
-
     </div>
   </div>
 
@@ -191,7 +187,7 @@
     <!-- HEADER -->
     <div class="flex items-center gap-2 border-b border-gray-300 pb-3 -mx-4 px-4 ">
 
-      <img src="keluhandanusia.svg" class="w-4 h-4">
+      <img src="/src/img/keluhandanusia.svg" class="w-4 h-4">
 
       <p class="text-sm text-gray-700">Distribusi Usia</p>
     </div>
@@ -271,7 +267,7 @@
     <div class="bg-white rounded-2xl shadow-md shadow-gray-400 overflow-hidden">
     
     <div class="flex  items-center bg-gradient-to-r from-[#3BC0A8] to-[#005461] text-white px-8 py-4 shadow-md shadow-gray-400 blur-in">
-      <p class=" text-center flex items-center gap-4"><img src="detailpelayanan.svg" > Detail Pelayanan Hari Ini</p>
+      <p class=" text-center flex items-center gap-4"><img src="/src/img/detailpelayanan.svg" > Detail Pelayanan Hari Ini</p>
       <p class="text-sm ml-auto">Sabtu, 25 April 2026</p>
     </div>
 
@@ -335,108 +331,14 @@
               </span>
             </td>
           </tr>
-
-
-
         </tbody>
       </table>
     </div>
-
   </div>
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br>
 <br>
-
-
-
 </body>
 </html>
