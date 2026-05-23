@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Display Antrian – Rumah Sakit Viamedika</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/src/output.css">
+  <script src="/src/js/api.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -179,9 +180,9 @@
       <div>
         <div class="section-label mb-3">Sedang Dipanggil</div>
         <div class="called-card rounded-2xl px-10 py-8 flex flex-col items-center justify-center min-h-[210px]">
-          <span class="text-white font-black text-7xl tracking-tight leading-none drop-shadow-md" id="nomor-dipanggil">A–003</span>
+          <span class="text-white font-black text-7xl tracking-tight leading-none drop-shadow-md" id="nomor-dipanggil">A–000</span>
           <div class="border-b border-white/40 w-3/4 my-4"></div>
-          <span class="text-white font-semibold text-2xl tracking-wide" id="nama-dipanggil">Siti Rahayu</span>
+          <span class="text-white font-semibold text-2xl tracking-wide" id="nama-dipanggil">Pasien A</span>
         </div>
       </div>
 
@@ -206,32 +207,9 @@
     </div>
 
     <!-- ── RIGHT COLUMN ── -->
-    <div class="flex flex-col gap-4">
-      <div class="section-label mb-1">Antrian Selanjutnya</div>
+    <div class="flex flex-col gap-4" id="antrian-selanjutnya">
+      <div class="section-label mb-1" >Antrian Selanjutnya</div>
 
-      <div class="queue-row">
-        <span class="num">A–004</span>
-        <div class="divider"></div>
-        <span class="name">Andi Pratama</span>
-      </div>
-
-      <div class="queue-row">
-        <span class="num">A–005</span>
-        <div class="divider"></div>
-        <span class="name">Yuli Astuti</span>
-      </div>
-
-      <div class="queue-row">
-        <span class="num">A–006</span>
-        <div class="divider"></div>
-        <span class="name">Rudi Hermawan</span>
-      </div>
-
-      <div class="queue-row">
-        <span class="num">A–007</span>
-        <div class="divider"></div>
-        <span class="name">Hendra Kusuma</span>
-      </div>
     </div>
 
   </main>
@@ -286,7 +264,14 @@
 
     tick();
     setInterval(tick, 1000);
+
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+
+    const unit = urlParams.get('unit')
+    console.log(unit)
+    displayAntrianUnit(unit)
   </script>
-  <script src="/src/js/api.js"></script>
+  
 </body>
 </html>
