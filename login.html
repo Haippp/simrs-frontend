@@ -1,15 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="./src/output.css" rel="stylesheet" />
+  <title>Login Page</title>
 </head>
-<body>
-    <form action="">
-        <label for="">Username</label><input type="text"><br>
-        <label for="">Password</label><input type="text"><br>
-        <button type="submit">login</button>
-    </form>
+
+<body class="flex">
+
+  <div class=" bg-gradient-to-r from-[#0A8A8E] to-[#004C57] w-full flex">
+
+    
+    <div class="block">
+      <img src="/src/img/rsv.svg" class=""/>
+    </div>
+
+    <!-- KANAN -->
+    <div class="w-full md:w-1/2 flex items-center justify-center px-10 py-12">
+
+      <!-- FORM -->
+      <form class="w-full max-w-md text-white">
+
+        <!-- JUDUL -->
+        <div class="text-center mb-10">
+          <h1 class="text-4xl font-bold mb-2">Selamat Datang</h1>
+
+          <p class="text-white text-sm">Pilih peran dan poli anda untuk melanjutkan</p>
+        </div>
+
+        <!-- PERAWAT DAN DOKTER -->
+<div class="flex gap-4 mb-8">
+
+
+  <a href="./loginperawat.html" class="flex-1 bg-white/15 hover:bg-[#3BC0A8]  rounded-xl py-4 flex items-center justify-center gap-2 shadow-lg border border-[#004C57]">
+    <img src="/src/img/perawat.svg" class="w-8 h-8">
+    <span class="text-white">Perawat</span></a>
+
+  <a href="./logindokter.html" class="flex-1 bg-white/15 hover:bg-[#3BC0A8]  rounded-xl py-4 flex items-center justify-center gap-2 shadow-lg border border-[#004C57]">
+    <img src="/src/img/dokter.svg" class="w-8 h-8">
+    <span class="text-white">Dokter</span></a>
+
+</div>
+        <!-- NAMA -->
+        <div class="flex flex-col mb-6">
+
+          <label class="mb-2 text-lg font-medium">Nama Pengguna</label>
+
+          <input type="text" placeholder="Masukan nama pengguna anda" class="bg-white/15 rounded-xl px-5 py-4 outline-none border border-[#004C57] placeholder:text-white/40 focus:ring-2 focus:ring-[#3BC0A8]">
+
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="flex flex-col mb-6">
+
+          <label class="mb-2 text-lg font-medium">Kata Sandi</label>
+
+          <input type="password" placeholder="Masukan sandi anda"  class="bg-white/15 rounded-xl px-5 py-4 outline-none border border-[#004C57] placeholder:text-white/40 focus:ring-2 focus:ring-[#3BC0A8]">
+
+        </div>
+
+        <!-- POLI -->
+        <div class="flex flex-col mb-8">
+
+          <label class="mb-2 text-lg font-medium">Poli</label>
+
+          <select class="bg-white/15 text-white/50 rounded-xl px-5 py-4 outline-none appearance-none border border-[#004C57] text-white focus:ring-2 focus:ring-[#3BC0A8] ">
+            <option class="text-black">Pilih poli anda</option>
+            <option class="text-black">Poli Umum</option>
+            <option class="text-black">Poli Gigi</option>
+            <option class="text-black">Poli Anak</option>
+        </select>
+            <img src="/src/img/panahbawah.svg"class="w-4 absolute right-22 top-185 -translate-y-22 pointer-events-none ">
+            
+        </div>
+
+        <!-- BUTTON -->
+        <div class="flex flex-col items-center">
+
+          <button type="submit" class="bg-white/15 hover:bg-[#3BC0A8]  px-24 py-3 rounded-xl shadow-lg border border-white/10"> Masuk</button>
+          <a href="lupakatasandi.html" class="text-sm text-white/70 mt-4 hover:text-white">Lupa kata sandi?</a>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
 </body>
 </html>
