@@ -265,7 +265,7 @@ flex items-center justify-center z-50">
       </div>
       
       <!-- tambahkan tag form disini! -->
-      <input type="hidden" name="id_perawat" value="15">
+      <input type="hidden" name="id_perawat" value="1">
       <input type="hidden" name="id_antrian" value="1024">
       <input type="hidden" name="id_pasien" value="88">
       <!-- FORM  TANDA-TANDA VITAL-->
@@ -312,7 +312,7 @@ flex items-center justify-center z-50">
           </label> 
 
           <div class="flex items-center">
-            <input type="text"
+            <input type="text" name="respirasi"
             class="w-full ring-1 ring-[#2BB7A3]
             rounded-lg px-4 py-2 mt-2">
             <div class=" w-17">
@@ -347,7 +347,6 @@ flex items-center justify-center z-50">
         <div class="mt-6 grid grid-cols-2 gap-6 text-black ">
       
         <div >
-          
           <label class="text-sm  ">
             BERAT BADAN
           </label> 
@@ -379,6 +378,27 @@ flex items-center justify-center z-50">
         </div>
       </div>
         
+      <!-- FORM ALERGI -->
+        <div class="mt-6 border-b-2 border-[#3BC0A8] text-[#3BC0A8] pb-2">
+          <label class="w-full flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="cekAlergi" name="cekAlergi" class="w-4 h-4 cursor-pointer">
+            <span>ALERGI</span>
+          </label>
+        </div>
+
+        <div id="formAlergiWrapper" class="hidden mt-6 grid grid-cols-1 gap-6 text-black">
+          <div>
+            <label class="text-sm">
+              INPUT ALERGI
+            </label>
+            <div class="flex items-center">
+              <input type="text" name="alergi"
+              class="w-full ring-1 ring-[#2BB7A3]
+              rounded-lg px-4 py-2 mt-2" placeholder="Masukkan informasi alergi pasien">
+            </div>
+          </div>
+        </div>
+        
       <!-- FORM KELUHAN -->
         <div class="mt-6 border-b-2 border-[#3BC0A8] text-[#3BC0A8] pb-2 ">
           <label class="w-full">KELUHAN</label>
@@ -390,8 +410,8 @@ flex items-center justify-center z-50">
             KELUHAN UTAMA (Konfirmasi Perawat)
           </label> 
 
-          <div class="flex items-center">
-            <input type="text"
+            <div class="flex items-center">
+            <input type="text" name="catatan"
             class="w-full ring-1 ring-[#2BB7A3]
             rounded-lg px-4 py-2 mt-2">
           </div>
@@ -496,4 +516,6 @@ function closeModal() {
   modal.classList.remove("flex");
 }
 </script>
+</script>
+<script src="/src/js/api.js"></script>
 </html>
