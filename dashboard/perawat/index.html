@@ -241,6 +241,7 @@
     <div class="p-6 bg-[#F7F7F7] max-h-[90vh] overflow-y-auto">
 
       <!-- PROFILE -->
+      <form id="formAsesmen">
       <div
       class="bg-[#2BB7A3] rounded-2xl p-5
       flex items-center gap-4 text-white">
@@ -264,7 +265,7 @@
       </div>
       
       <!-- tambahkan tag form disini! -->
-      <input type="hidden" name="id_perawat" value="15">
+      <input type="hidden" name="id_perawat" value="1">
       <input type="hidden" name="id_antrian" value="1024">
       <input type="hidden" name="id_pasien" value="88">
       <!-- FORM  TANDA-TANDA VITAL-->
@@ -280,7 +281,7 @@
           </label> 
 
           <div class="flex items-center">
-            <input type="text"
+            <input type="text" name="tensi"
             class="w-full ring-1 ring-[#2BB7A3]
             rounded-lg px-4 py-2 mt-2">
             <div class=" w-17">
@@ -296,7 +297,7 @@
           </label> 
 
           <div class="flex items-center">
-            <input type="text"
+            <input type="number" name="nadi"
             class="w-full ring-1 ring-[#2BB7A3]
            rounded-lg px-4 py-2 mt-2">
             <div class=" w-17">
@@ -311,7 +312,7 @@
           </label> 
 
           <div class="flex items-center">
-            <input type="text"
+            <input type="text" name="respirasi"
             class="w-full ring-1 ring-[#2BB7A3]
             rounded-lg px-4 py-2 mt-2">
             <div class=" w-17">
@@ -326,7 +327,7 @@
           </label> 
 
           <div class="flex items-center">
-            <input type="text"
+            <input type="number" step="0.1" name="suhu"
             class="w-full ring-1 ring-[#2BB7A3]
             rounded-lg px-4 py-2 mt-2">
 
@@ -346,13 +347,12 @@
         <div class="mt-6 grid grid-cols-2 gap-6 text-black ">
       
         <div >
-          
           <label class="text-sm  ">
             BERAT BADAN
           </label> 
 
           <div class="flex items-center">
-            <input type="text"
+            <input type="number" step="0.1" name="berat_badan"
             class="w-full ring-1 ring-[#2BB7A3]
             rounded-lg px-4 py-2 mt-2">
             <div class=" w-17">
@@ -368,7 +368,7 @@
           </label> 
 
           <div class="flex items-center">
-            <input type="text"
+            <input type="number" name="tinggi_badan"
             class="w-full ring-1 ring-[#2BB7A3]
            rounded-lg px-4 py-2 mt-2">
             <div class=" w-17">
@@ -376,22 +376,28 @@
             </div>
           </div>
         </div>
+      </div>
+        
+      <!-- FORM ALERGI -->
+        <div class="mt-6 border-b-2 border-[#3BC0A8] text-[#3BC0A8] pb-2">
+          <label class="w-full flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="cekAlergi" name="cekAlergi" class="w-4 h-4 cursor-pointer">
+            <span>ALERGI</span>
+          </label>
+        </div>
 
-        <div>
-          <label class="text-sm ">
-            INDEKS MASA TUBUH (BMI)
-          </label> 
-
-          <div class="flex items-center">
-            <input type="text"
-            class="w-full ring-1 ring-[#2BB7A3]
-            rounded-lg px-4 py-2 mt-2">
-            <div class=" w-17">
-              <p class="text-xs text-gray-500 ml-2"> kg/m²</p>
+        <div id="formAlergiWrapper" class="hidden mt-6 grid grid-cols-1 gap-6 text-black">
+          <div>
+            <label class="text-sm">
+              INPUT ALERGI
+            </label>
+            <div class="flex items-center">
+              <input type="text" name="alergi"
+              class="w-full ring-1 ring-[#2BB7A3]
+              rounded-lg px-4 py-2 mt-2" placeholder="Masukkan informasi alergi pasien">
             </div>
           </div>
         </div>
-      </div>
         
       <!-- FORM KELUHAN -->
         <div class="mt-6 border-b-2 border-[#3BC0A8] text-[#3BC0A8] pb-2 ">
@@ -404,8 +410,8 @@
             KELUHAN UTAMA (Konfirmasi Perawat)
           </label> 
 
-          <div class="flex items-center">
-            <input type="text"
+            <div class="flex items-center">
+            <input type="text" name="catatan"
             class="w-full ring-1 ring-[#2BB7A3]
             rounded-lg px-4 py-2 mt-2">
           </div>
@@ -416,16 +422,26 @@
   <br>
 <div class=" border-b-2 border-[#2BB7A3] -mx-6 " ></div><br>
 
-<div class="flex   text-right ml-auto gap-4 ">
-  <span class="text-right ml-auto  " >
-    <p class=" bg-white text-black rounded-lg  mt-12  px-4 py-2   from-[#3BC0A8] to-[#005461] cursor-pointer text-xs ring ring-black"><a href="index.html">Batal</a></p> 
-  </span>
+  <div class="flex justify-end gap-4 mt-6">
+        <button type="button" onclick="closeModal()" 
+          class="bg-white text-black rounded-lg px-4 py-2 text-xs ring-1 ring-black hover:bg-gray-100 transition">
+          Batal
+        </button> 
 
+<<<<<<< HEAD
+        <button type="submit" 
+          class="bg-gradient-to-r from-[#3BC0A8] to-[#005461] rounded-lg px-4 py-2 text-xs text-white shadow-md hover:opacity-90 transition font-medium">
+          Simpan dan teruskan ke dokter
+        </button> 
+      </div>
+  </form></div>
+=======
   <span class="" >
     <p class=" bg-white rounded-lg  mt-12  px-4 py-2  bg-gradient-to-r from-[#3BC0A8] to-[#005461]  text-xs text-white "><a href="index.html">Simpan dan terukan ke dokter</a></p> 
   </span>
 </div>
     </div>
+>>>>>>> b5defe8c6e978ea7ac7f24fa0ac060842c6d584f
   </div>
 </div>
 <br>
@@ -508,5 +524,12 @@ function closeModal() {
   modal.classList.add("hidden");
   modal.classList.remove("flex");
 }
+document.addEventListener("DOMContentLoaded", () => {
+  // Toggle tampilan form alergi berdasarkan checkbox
+  const cekAlergi = document.getElementById("cekAlergi");
+  const formAlergiWrapper = document.getElementById("formAlergiWrapper");
+});
 </script>
+</script>
+<script src="/src/js/api.js"></script>
 </html>
