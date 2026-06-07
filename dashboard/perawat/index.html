@@ -15,11 +15,15 @@
     <img src="/src/img/Logoputih.svg" class="w-40 h-40 ml-6 " >
 
     <!--header atas Kanan -->
-    <div class="text-white ml-auto mr-4 pr-4">
-    <p>Ns. Nur Wati</p>
-    <p>Perawat Poli Mata</p>
-    </div>
-  <img src="/src/img/fotoprofil.svg" class=" mr-8" >
+      <div class="text-white ml-auto mr-4 pr-4">
+        <a href="profil.html"> 
+        <p>Ns. Nur Wati</p>
+        <p>Perawat Poli Mata</p>
+        </a>
+      </div>
+        <a href="profil.html"> 
+          <img src="/src/img/fotoprofil.svg" class=" mr-8" >
+        </a>
 </div>
 
 <div class="flex">
@@ -210,19 +214,15 @@
 
 
 
-<div id="modal"
-class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden
-flex items-center justify-center z-50">
+<div id="modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
 
   <!-- MODAL -->
   <div
-  class="bg-white   rounded-4xl
-  overflow-hidden shadow-2xl ">
+  class="bg-white   rounded-4xl overflow-hidden shadow-2xl ">
 
     <!-- HEADER -->
     <div
-    class="bg-gradient-to-r from-[#2BB7A3] to-[#006B78]
-    text-white px-8 py-3 flex items-center justify-between ">
+    class="bg-gradient-to-r from-[#2BB7A3] to-[#006B78] text-white px-8 py-3 flex items-center justify-between ">
 
       <div class="flex items-center gap-3">
     
@@ -428,12 +428,20 @@ flex items-center justify-center z-50">
           Batal
         </button> 
 
+<<<<<<< HEAD
         <button type="submit" 
           class="bg-gradient-to-r from-[#3BC0A8] to-[#005461] rounded-lg px-4 py-2 text-xs text-white shadow-md hover:opacity-90 transition font-medium">
           Simpan dan teruskan ke dokter
         </button> 
       </div>
   </form></div>
+=======
+  <span class="" >
+    <p class=" bg-white rounded-lg  mt-12  px-4 py-2  bg-gradient-to-r from-[#3BC0A8] to-[#005461]  text-xs text-white "><a href="index.html">Simpan dan terukan ke dokter</a></p> 
+  </span>
+</div>
+    </div>
+>>>>>>> b5defe8c6e978ea7ac7f24fa0ac060842c6d584f
   </div>
 </div>
 <br>
@@ -501,6 +509,7 @@ flex items-center justify-center z-50">
   .slide-left3 { animation: slideLeft 3s ease-out; }
   .slide-left4 { animation: slideLeft 3.5s ease-out; }
 </style>
+
 <script>
 function openModal() {
   const modal = document.getElementById("modal");

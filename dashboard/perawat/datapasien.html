@@ -13,11 +13,16 @@
     <img src="/src/img/Logoputih.svg" class="w-40 h-40 ml-6 " >
 
     <!--header atas Kanan -->
-    <div class="text-white ml-auto mr-4 pr-4">
-    <p>Ns. Nur Wati</p>
-    <p>Perawat Poli Mata</p>
-    </div>
-  <img src="/src/img/fotoprofil.svg" class=" mr-8" >
+    
+      <div class="text-white ml-auto mr-4 pr-4">
+        <a href="profil.html"> 
+        <p>Ns. Nur Wati</p>
+        <p>Perawat Poli Mata</p>
+        </a>
+      </div>
+        <a href="profil.html"> 
+          <img src="/src/img/fotoprofil.svg" class=" mr-8" >
+        </a>
 </div>
 
 <div class="flex">
@@ -102,7 +107,7 @@
             <td class="px-6 py-4 ">10 Feb 2026</td>
             <td class="px-6 py-4">   
             <span>
-              <p class=" bg-white text-black text-center rounded-lg shadow-md shadow-gray-400 p-1 w-20 rounded-lg hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] cursor-pointer text-xs">Detail</p> 
+              <button onclick="openDetailModal()" class=" bg-white text-black text-center rounded-lg shadow-md shadow-gray-400 p-1 w-20 rounded-lg hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] cursor-pointer text-xs">Detail</button> 
             </span>
             </td>
           </tr>
@@ -121,6 +126,7 @@
               <p class=" bg-white text-black text-center rounded-lg shadow-md shadow-gray-400 p-1 w-20 rounded-lg hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] cursor-pointer text-xs">Detail</p> 
             </span>
             </td>
+          </tr>
 
           <!-- 3-->
           <tr class="">
@@ -136,6 +142,7 @@
               <p class=" bg-white text-black text-center rounded-lg shadow-md shadow-gray-400 p-1 w-20 rounded-lg hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] cursor-pointer text-xs">Detail</p> 
             </span>
             </td>
+          </tr>
 
           <!-- 4-->
           <tr class="">
@@ -151,11 +158,556 @@
               <p class=" bg-white text-black text-center rounded-lg shadow-md shadow-gray-400 p-1 w-20 rounded-lg hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] cursor-pointer text-xs">Detail</p> 
             </span>
             </td>
+          </tr>
 
         </tbody>
       </table>
+
+
+
+
+
+<!-- MODAL DETAIL PASIEN -->
+<div
+id="detailModal"
+class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden items-center justify-center z-50">
+
+  <!-- CARD -->
+  <div
+  class="bg-[#F7F7F7] w-[800px] rounded-[40px] overflow-hidden shadow-2xl">
+
+    <!-- HEADER -->
+    <div
+    class="bg-gradient-to-r from-[#3BC0A8] to-[#005461]
+    text-white px-8 py-5 flex items-center justify-between">
+
+      <div class="flex items-center gap-4">
+
+        <img src="/src/img/daftar.svg" class="w-7">
+
+        <h1 class="text-3xl font-medium">
+          Data Pasien
+        </h1>
+
+      </div>
+
+      <button
+      onclick="closeDetailModal()"
+      class="text-4xl">
+        ×
+      </button>
+
     </div>
 
+    <!-- CONTENT -->
+    <div class="p-8 max-h-[90vh] overflow-y-auto">
+
+      <!-- PROFILE -->
+      <div
+      class="bg-gradient-to-r from-[#3BC0A8] to-[#24988A]
+      rounded-3xl p-6 text-white flex items-center">
+
+        <!-- FOTO -->
+        <div
+        class="w-16 h-16 rounded-full bg-white
+        text-black flex items-center justify-center
+        font-bold text-xl">
+          BS
+        </div>
+
+        <!-- NAMA -->
+        <div class="ml-5">
+
+          <h2 class="text-2xl font-medium">
+            Budi Santoso
+          </h2>
+
+          <p class="text-sm opacity-90">
+            45 tahun • Laki Laki
+          </p>
+
+        </div>
+
+        <!-- RM -->
+        <div class="ml-auto text-right">
+
+          <p class="text-2xl">
+            2024-003
+          </p>
+
+          <p class="text-sm opacity-90">
+            No. Rekam Medis
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- IDENTITAS & MEDIS -->
+      <div class="grid grid-cols-2 gap-6 mt-8">
+
+        <!-- IDENTITAS -->
+        <div
+        class="bg-white rounded-2xl border border-[#3BC0A8] overflow-hidden">
+
+          <div
+          class="border-b border-[#3BC0A8]
+          px-5 py-3 font-medium flex items-center gap-2">
+
+          <img src="/src/img/keluhandanusia.svg" class="w-4 h-4">
+
+            <p>Identitas</p>
+
+          </div>
+
+          <div class="p-5 space-y-5 text-gray-700">
+
+            <div class="flex justify-between">
+              <span>NIK</span>
+              <span>3271010112800001</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Tgl Lahir</span>
+              <span>1980-03-12</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>No. HP</span>
+              <span>081234567890</span>
+            </div>
+
+            <div class="flex justify-between gap-5">
+              <span>Alamat</span>
+
+              <span class="text-right">
+                Jl. Merdeka No. 10, Banjarmasin
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- MEDIS -->
+        <div
+        class="bg-white rounded-2xl border border-[#3BC0A8] overflow-hidden">
+
+          <div
+          class="border-b border-[#3BC0A8]
+          px-5 py-3 font-medium flex items-center gap-2">
+
+            <img src="/src/img/medis.svg" class="w-4 h-4">
+
+            <p>Medis</p>
+
+          </div>
+
+          <div class="p-5 space-y-5 text-gray-700">
+
+            <div class="flex justify-between">
+              <span>Riwayat Medis</span>
+              <span>Hipertensi Grade II</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Alergi</span>
+              <span>Tidak ada</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Total Kunjungan</span>
+              <span>4 kali</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Kunjungan Terakhir</span>
+              <span>10 Feb 2026</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIWAYAT -->
+      <div
+      class="mt-6 bg-white rounded-2xl
+      border border-[#3BC0A8] overflow-hidden">
+
+        <!-- HEADER -->
+        <div
+        class="border-b border-[#3BC0A8]
+        px-6 py-4 flex items-center gap-3">
+
+          <img src="/src/img/riwayatrekammedis.svg" class="w-5">
+
+          <p class="font-medium text-[#005461]">
+            Riwayat Rekam Medis
+          </p>
+
+        </div>
+
+        <!-- CONTENT -->
+        <div class="p-6">
+
+          <!-- ITEM -->
+          <div class="relative pl-10 pb-10  ">
+             <div class="absolute left-[1px] top-6 h-162 w-[1px] bg-[#3BC0A8]/60"> </div>
+             
+            <!-- KIRI -->
+            <div class="absolute -left-4 top-0 w-8 h-8 rounded-full bg-[#F7F7F7] border border-[#3BC0A8] flex items-center justify-center">
+              <img src="/src/img/medis1.svg" class="w-5">
+
+              <div class="absolute  top-162 w-8 h-8 rounded-full bg-[#F7F7F7] border border-[#3BC0A8] flex items-center justify-center">
+                <img src="/src/img/medis1.svg" class="w-5">
+              </div>
+
+            </div>
+
+            <!-- CARD -->
+            <div
+            class="border border-[#3BC0A8]
+            rounded-2xl p-5 mb-6">
+
+              <!-- TOP -->
+              <div class="flex justify-between">
+
+                <div>
+
+                  <div class="flex items-center gap-3">
+
+                    <p class="font-medium text-[#005461]">
+                      Poli Umum
+                    </p>
+
+                    <p class="text-sm text-[#005461]">
+                      • dr. Ahmad Fauzi, sp.PD
+                    </p>
+
+                  </div>
+
+                  <p class="mt-2 text-gray-700">
+                    Hipertensi Grade II
+                  </p>
+
+                </div>
+
+                <p class="text-gray-600">
+                  10 Feb 2026
+                </p>
+
+              </div>
+
+              <!-- TANDA VITAL -->
+              <div class="mt-5">
+                
+                <p class="font-medium text-[#005461] flex "> <img src="/src/img/perawat1.svg" class="w-5 mr-2">Tanda-Tanda Vital </p>
+
+                <div class="flex gap-3 mt-3">
+
+                  <div
+                  class="border border-[#3BC0A8]
+                  rounded-xl px-5 py-3 text-center">
+
+                    <p class="text-xs text-gray-500">
+                      TEKANAN DARAH
+                    </p>
+
+                    <p class="text-2xl font-medium text-[#005461]">
+                      150/95
+                    </p>
+
+                    <span class="text-xs text-gray-500">
+                      mmHg
+                    </span>
+
+                  </div>
+
+                  <div
+                  class="border border-[#3BC0A8]
+                  rounded-xl px-5 py-3 text-center">
+
+                    <p class="text-xs text-gray-500">
+                      NADI
+                    </p>
+
+                    <p class="text-2xl font-medium text-[#005461]">
+                      88
+                    </p>
+
+                    <span class="text-xs text-gray-500">
+                      bpm
+                    </span>
+
+                  </div>
+
+                  <div
+                  class="border border-[#3BC0A8]
+                  rounded-xl px-5 py-3 text-center">
+
+                    <p class="text-xs text-gray-500">
+                      SUHU
+                    </p>
+
+                    <p class="text-2xl font-medium text-[#005461]">
+                      36.7
+                    </p>
+
+                    <span class="text-xs text-gray-500">
+                      °C
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- OBAT -->
+              <div class="mt-6">
+
+                <p class="font-medium text-[#005461 flex"><img src="/src/img/obat.svg" class="w-5 mr-2">
+                  Obat yang diberikan
+                </p>
+
+                <div class="mt-3 space-y-4">
+
+                  <div>
+
+                    <p>Amlodipin 5mg</p>
+
+                    <p class="text-xs text-gray-500 mt-1 flex"><img src="/src/img/waktu.svg" class="w-4 mr-2">
+                      1x1 (pagi) <img src="/src/img/hari.svg" class="w-4 mr-2 ml-1"> 30 Hari
+                    </p>
+
+                  </div>
+
+                  <div>
+
+                    <p>Captopril 25mg</p>
+
+                    <p class="text-xs text-gray-500 mt-1 flex"><img src="/src/img/waktu.svg" class="w-4 mr-2">
+                      2x1 <img src="/src/img/hari.svg" class="w-4 mr-2 ml-11"> 30 Hari
+                    </p>
+
+                  </div>
+
+                  <div>
+
+                    <p>Vitamin B Kompleks</p>
+
+                    <p class="text-xs text-gray-500 mt-1 flex"><img src="/src/img/waktu.svg" class="w-4 mr-2">
+                      1x1 <img src="/src/img/hari.svg" class="w-4 mr-2 ml-12"> 30 Hari
+                    </p>
+
+                  </div>
+
+
+                </div>
+
+              </div>
+
+              <!-- TINDAKAN -->
+              <div class="mt-6">
+
+                <p class="font-medium text-[#005461] flex"><img src="/src/img/tindakan.svg" class="w-5 mr-2">
+                  Tindakan
+                </p>
+
+                <p class="mt-2 text-gray-700 leading-relaxed">
+                  Pasien tidak rutin minum obat. TD masih tinggi. Dianjurkan diet rendah garam, olahraga ringan rutin. Kontrol ulang 2 minggu.
+                </p>
+
+              </div>
+
+            </div>
+           <div
+            class="border border-[#3BC0A8]
+            rounded-2xl p-5">
+
+              <!-- TOP -->
+              <div class="flex justify-between">
+
+                <div>
+
+                  <div class="flex items-center gap-3">
+
+                    <p class="font-medium text-[#005461]">
+                      Poli THT
+                    </p>
+
+                    <p class="text-sm text-[#005461]">
+                      • dr. Hani Susilo
+                    </p>
+
+                  </div>
+
+                  <p class="mt-2 text-gray-700">
+                    Batuk Berdahak
+                  </p>
+
+                </div>
+
+                <p class="text-gray-600">
+                  5 Des 2026
+                </p>
+
+              </div>
+
+              <!-- TANDA VITAL -->
+              <div class="mt-5">
+
+                <p class="font-medium text-[#005461] flex"><img src="/src/img/perawat1.svg" class="w-5 mr-2">Tanda-Tanda Vital</p>
+
+                <div class="flex gap-3 mt-3">
+
+                  <div
+                  class="border border-[#3BC0A8]
+                  rounded-xl px-5 py-3 text-center">
+
+                    <p class="text-xs text-gray-500">
+                      TEKANAN DARAH
+                    </p>
+
+                    <p class="text-2xl font-medium text-[#005461]">
+                      142/88
+                    </p>
+
+                    <span class="text-xs text-gray-500">
+                      mmHg
+                    </span>
+
+                  </div>
+
+                  <div
+                  class="border border-[#3BC0A8]
+                  rounded-xl px-5 py-3 text-center">
+
+                    <p class="text-xs text-gray-500">
+                      NADI
+                    </p>
+
+                    <p class="text-2xl font-medium text-[#005461]">
+                      80
+                    </p>
+
+                    <span class="text-xs text-gray-500">
+                      bpm
+                    </span>
+
+                  </div>
+
+                  <div
+                  class="border border-[#3BC0A8]
+                  rounded-xl px-5 py-3 text-center">
+
+                    <p class="text-xs text-gray-500">
+                      SUHU
+                    </p>
+
+                    <p class="text-2xl font-medium text-[#005461]">
+                      37.4
+                    </p>
+
+                    <span class="text-xs text-gray-500">
+                      °C
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- OBAT -->
+              <div class="mt-6">
+
+                <p class="font-medium text-[#005461] flex"><img src="/src/img/obat.svg" class="w-5 mr-2">
+                  Obat yang diberikan
+                </p>
+
+                <div class="mt-3 space-y-4">
+
+                  <div>
+
+                    <p>Paracetamol 500mg</p>
+
+                    <p class="text-xs text-gray-500 mt-1 flex"><img src="/src/img/waktu.svg" class="w-4 mr-2">
+                      3x1 <img src="/src/img/hari.svg" class="w-4 mr-2 ml-11"> 5 Hari
+                    </p>
+
+                  </div>
+
+                  <div>
+
+                    <p>Ambroxol 30mg</p>
+
+                    <p class="text-xs text-gray-500 mt-1 flex"><img src="/src/img/waktu.svg" class="w-4 mr-2">
+                      3x1 <img src="/src/img/hari.svg" class="w-4 mr-2 ml-11"> 5 Hari
+                    </p>
+
+                  </div>
+
+                  <div>
+
+                    <p>Vitamin C 500mg</p>
+
+                    <p class="text-xs text-gray-500 mt-1 flex"><img src="/src/img/waktu.svg" class="w-4 mr-2">
+                      1x1 <img src="/src/img/hari.svg" class="w-4 mr-2 ml-12"> 7 Hari
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- TINDAKAN -->
+              <div class="mt-6">
+
+                <p class="font-medium text-[#005461] flex"><img src="/src/img/tindakan.svg" class="w-5 mr-2">
+                  Tindakan
+                </p>
+
+                <p class="mt-2 text-gray-700 leading-relaxed">Batuk berdahak selama 4 hari, tidak ada sesak napas, foto thorax tidak diperlukan untuk saat ini.</p>
+
+              </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+<script>
+function openDetailModal() {
+  const modal = document.getElementById("detailModal");
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+}
+
+function closeDetailModal() {
+  const modal = document.getElementById("detailModal");
+
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
+}
+</script>
+    </div>
+
+    
   </div>
 
 </div>
