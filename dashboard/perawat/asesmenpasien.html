@@ -63,49 +63,23 @@
         <thead class=" ">
           <tr class="  border-b border-gray-300 ">
             <th class="px-6 py-4 font-medium">NO.ANTRIAN</th>
-            <th class="px-4 py-4  font-medium">NAMA PASIEN</th>
-            <th class="px-15 py-4 font-medium">TD</th>
+            <th class="px-4 py-4 font-medium">NAMA PASIEN</th>
+            <th class="px-4 py-4 font-medium w-24">TD</th>
             <th class="px-6 py-4 font-medium">BB/TB/BMI</th>
-            <th class="px-6 py-4 font-medium">SUHU</th>
-            <th class="px-6 py-4 font-medium">SpO<sub>2</sub></th>
-            <th class="px-6 py-4 font-medium">CATATAN</th>
+            <th class="px-4 py-4 font-medium w-24">SUHU</th>
+            <th class="px-4 py-4 font-medium w-24">SpO<sub>2</sub></th>
+            <th class="px-6 py-4 font-medium w-96" colspan="2">CATATAN</th>
             <th class="px-6 py-4 font-medium text-left">STATUS</th>
           </tr>
         </thead>
 
         <!-- Body -->
-        <tbody class="">
-
-          <!-- 1 -->
-          <tr class="">
-            <td class="px-8 py-4">A-001</td>
-            <td class="px-6 py-4">Budi Santoso</td>
-            <td class="px-6 py-4">180/80 mmHg</td>
-            <td class="px-6 py-4">70 kg/ 170 cm/ 27.6</td>
-            <td class="px-13 py-4">36.7°C</td>
-            <td class="px-2 py-4">78 bpm</td>
-            <td class="px-6 py-4 ">Penglihatan saya buram saat sore hari</td>
-            <td class="px-4 py-4">
-              <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs">
-                 Selesai
-              </span>
+        <tbody id="asesmen-pasien-body" class="">
+          <tr>
+            <td colspan="9" class="px-6 py-4 text-center text-gray-500">
+              Memuat data asesmen hari ini...
             </td>
           </tr>
-
-          <!-- 2 -->
-          <tr class="">
-            <td class="px-8 py-4">A-002</td>
-            <td class="px-6 py-4">Dewi Lestari</td>
-            <td class="px-6 py-4">130/85 mmHg</td>
-            <td class="px-6 py-4">58 kg/ 158 cm/ 20.0</td>
-            <td class="px-13 py-4">37.6°C</td>
-            <td class="px-2 py-4">87 bpm</td>
-            <td class="px-6 py-4 ">Mata merah dan berair</td>
-            <td class="px-4 py-4">
-              <span class="bg-[#00546133] text-[#005461] px-3 py-1 rounded-full text-xs">
-                 Di dokter
-              </span>
-              </td>
         </tbody>
       </table>
     </div>
@@ -114,5 +88,48 @@
 <br>
 <br>
 <script src="/src/js/api.js"></script>
+<script>
+  async function renderAsesmenPasien() {
+    const tbody = document.getElementById('asesmen-pasien-body');
+    if (!tbody) return;
+
+    const data = await fetchAsesmenToday();
+    if (!data || data.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="9" class="px-6 py-4 text-center text-gray-500">
+            Tidak ada data asesmen hari ini.
+          </td>
+        </tr>`;
+      return;
+    }
+
+    tbody.innerHTML = '';
+    data.forEach((item) => {
+      const bmi = item.tinggi_badan > 0 ? (item.berat_badan / ((item.tinggi_badan / 100) ** 2)).toFixed(1) : '-';
+      const catatan = item.keluhan_utama || '-';
+      const status = item.updated_at && item.updated_at !== item.created_at ? 'Selesai' : 'Menunggu';
+      const statusClass = item.updated_at && item.updated_at !== item.created_at ? 'bg-gray-200 text-gray-700' : 'bg-[#00546133] text-[#005461]';
+
+      tbody.innerHTML += `
+        <tr class="">
+          <td class="px-8 py-4">${item.id_antrian ?? item.id_asesmen}</td>
+          <td class="px-6 py-4">Pasien #${item.id_pasien}</td>
+          <td class="px-4 py-4 w-24">${item.tensi || '-'}</td>
+          <td class="px-6 py-4">${item.berat_badan || '-'} kg / ${item.tinggi_badan || '-'} cm / ${bmi === '-' ? '-' : bmi}</td>
+          <td class="px-4 py-4 w-24">${item.suhu ? item.suhu + '°C' : '-'}</td>
+          <td class="px-4 py-4 w-24">${item.nadi ? item.nadi + ' bpm' : '-'}</td>
+          <td class="px-6 py-4 w-96 break-words whitespace-normal text-sm" colspan="2">${catatan}</td>
+          <td class="px-4 py-4">
+            <span class="${statusClass} px-3 py-1 rounded-full text-xs">
+              ${status}
+            </span>
+          </td>
+        </tr>`;
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', renderAsesmenPasien);
+</script>
 </body>
 </html>

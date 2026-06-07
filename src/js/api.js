@@ -69,9 +69,38 @@ async function kirimAsesmenPasien(formElement) {
   }
 }
 
+async function fetchAsesmenToday() {
+  const url = API_HOST + "/asesmen/today";
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
+  const token = getCookie("jwt");
+  if (token) headers["Authorization"] = `Bearer ${token}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers,
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.error("Gagal mengambil data asesmen hari ini:", result);
+      return null;
+    }
+
+    return result.data || [];
+  } catch (error) {
+    console.error("Fetch Asesmen Today Error:", error);
+    return null;
+  }
+}
+
 // Attach submit handler to the asesmen form so it uses our function
+// dan toggle tampilan input alergi saat checkbox diklik
 document.addEventListener("DOMContentLoaded", () => {
-  // Toggle tampilan form alergi berdasarkan checkbox
   const cekAlergi = document.getElementById("cekAlergi");
   const formAlergiWrapper = document.getElementById("formAlergiWrapper");
 
