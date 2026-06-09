@@ -1,4 +1,4 @@
-const API_HOST = "http://127.0.0.1:8000/api";
+const API_HOST = "https://rawat4b06.vps-poliban.my.id/api";
 
 async function kirimAsesmenPasien(formElement) {
   // 1. Ambil data dari element form menggunakan FormData kustom
@@ -24,7 +24,7 @@ async function kirimAsesmenPasien(formElement) {
     keluhan_utama: formData.get("catatan"), // Sesuai validasi: keluhan_utama (diambil dari input name="catatan")
     suhu: parseFloat(formData.get("suhu")), // Harus Numeric/Float
     nadi: parseInt(formData.get("nadi")), // Harus Integer
-    respirasi: parseFloat(formData.get("respirasi")),
+    respirasi: parseInt(formData.get("respirasi")), // Harus Integer
     tinggi_badan: parseFloat(formData.get("tinggi_badan")), // Harus Numeric
     berat_badan: parseFloat(formData.get("berat_badan")), // Harus Numeric
     alergi: alergi, // Null jika kosong, String jika ada
