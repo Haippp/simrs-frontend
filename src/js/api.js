@@ -1,4 +1,4 @@
-const API_HOST = "https://rawat4b06.vps-poliban.my.id/api";
+const API_HOST = "http://127.0.0.1:8000/api";
 
 async function kirimAsesmenPasien(formElement) {
   // 1. Ambil data dari element form menggunakan FormData kustom
@@ -120,12 +120,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const form = document.getElementById("formAsesmen");
-  if (!form) return;
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      await kirimAsesmenPasien(form);
+    });
+  }
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    await kirimAsesmenPasien(form);
-  });
+  const queueTableBody = document.getElementById("queue-table-body");
+  if (queueTableBody) {
+    displayAntrianUnit(1);
+  }
 });
 
 // Fungsi bantu (helper) untuk mengambil Token JWT perawat dari cookie browser
@@ -142,36 +147,93 @@ function getCookie(name) {
 
 function displayAntrianUnit(idUnit) {
   const apiPath = API_HOST + "/antrian/unit/" + idUnit;
-
   const total = document.getElementById("total-antrian");
   const menunggu = document.getElementById("menunggu");
-
   const nama = document.getElementById("nama-dipanggil");
   const nomorAntrian = document.getElementById("nomor-dipanggil");
-
-  const antrianContainer = document.getElementById("antrian-selanjutnya");
+  const queueTableBody = document.getElementById("queue-table-body");
+  const queueDate = document.getElementById("queue-date");
 
   fetch(apiPath)
     .then((res) => res.json())
-    .then((data) => [data.statistik, data.data])
-    .then(([stats, dataAntrian]) => {
-      const antrianMenunggu = dataAntrian["menunggu"];
-      const antrianDipanggil = dataAntrian["pemeriksaan_awal"];
+    .then((data) => {
+      if (!data || data.success === false) {
+        throw new Error(data?.message || "Respons API tidak valid.");
+      }
 
-      total.innerText = stats.total;
-      menunggu.innerText = stats.menunggu;
+      const antrian = data.data || {};
+      const menungguList = Array.isArray(antrian.menunggu)
+        ? antrian.menunggu
+        : [];
+      const dipanggil = antrian.pemeriksaan_awal || null;
 
-      nomorAntrian.innerText = antrianDipanggil.kode_antrian;
-      nama.innerText = antrianDipanggil.pendaftaran["pasien"]["nama_lengkap"];
+      if (total)
+        total.innerText = String(menungguList.length + (dipanggil ? 1 : 0));
+      if (menunggu) menunggu.innerText = String(menungguList.length);
+      if (dipanggil) {
+        if (nomorAntrian)
+          nomorAntrian.innerText = dipanggil.kode_antrian || "-";
+        if (nama) {
+          const namaPasien = dipanggil.pendaftaran?.pasien?.nama_lengkap || "-";
+          nama.innerText = namaPasien;
+        }
+      }
 
-      for (let i = 0; i < 4; i++) {
-        antrianContainer.innerHTML += `
-                    <div class="queue-row">
-                        <span class="num">${antrianMenunggu[i].kode_antrian}</span>
-                        <div class="divider"></div>
-                        <span class="name">${antrianMenunggu[i].pendaftaran["pasien"]["nama_lengkap"]}</span>
-                    </div>
-                    `;
+      if (queueDate && data.tanggal) {
+        queueDate.innerText = new Date(data.tanggal).toLocaleDateString(
+          "id-ID",
+          {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          },
+        );
+      }
+
+      if (queueTableBody) {
+        if (menungguList.length === 0) {
+          queueTableBody.innerHTML = `
+            <tr>
+              <td colspan="6" class="px-6 py-5 text-center text-sm text-gray-500">
+                Tidak ada pasien yang sedang menunggu.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        queueTableBody.innerHTML = menungguList
+          .slice(0, 10)
+          .map((item) => {
+            const pasien = item.pendaftaran?.pasien || {};
+            const statusBadge = `<span class="px-4 py-1.5 rounded-full text-xs font-medium bg-[#fde8cc] text-[#c87d2f]">Menunggu</span>`;
+            return `
+            <tr class="border-b border-gray-50">
+              <td class="px-6 py-5 text-gray-700">${item.kode_antrian || "-"}</td>
+              <td class="px-6 py-5 text-gray-800 font-medium">${pasien.nama_lengkap || "-"}</td>
+              <td class="px-6 py-5 text-gray-600">-</td>
+              <td class="px-6 py-5 text-gray-600 text-xs">-</td>
+              <td class="px-6 py-5">${statusBadge}</td>
+              <td class="px-6 py-5 text-gray-500 font-medium">
+                <button class="px-5 py-2 rounded-lg text-white text-xs font-semibold" style="background-color: #2bb5a0;">Periksa</button>
+              </td>
+            </tr>
+          `;
+          })
+          .join("");
+      }
+    })
+    .catch((error) => {
+      console.error("Gagal memuat data antrian dokter:", error);
+      if (queueTableBody) {
+        queueTableBody.innerHTML = `
+          <tr>
+            <td colspan="6" class="px-6 py-5 text-center text-sm text-red-500">
+              Terjadi kesalahan saat memuat daftar pasien.
+            </td>
+          </tr>
+        `;
       }
     });
 }

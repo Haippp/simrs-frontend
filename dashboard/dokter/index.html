@@ -83,7 +83,7 @@
             </svg>
             Pasien Menunggu Pemeriksaan Dokter
           </div>
-          <span class="text-white text-sm">Sabtu, 25 April 2026</span>
+          <span class="text-white text-sm" id="queue-date">Sabtu, 25 April 2026</span>
         </div>
 
         <!-- Table -->
@@ -98,37 +98,16 @@
               <th class="text-left px-6 py-4 text-gray-500 font-semibold text-xs uppercase tracking-wider">Aksi</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Row 1 -->
-            <tr class="border-b border-gray-50">
-              <td class="px-6 py-5 text-gray-700">A-001</td>
-              <td class="px-6 py-5 text-gray-800 font-medium">Budi Santoso</td>
-              <td class="px-6 py-5 text-gray-600">Penglihatan saya buram<br>saat sore hari</td>
-              <td class="px-6 py-5 text-gray-600 text-xs">TD: 120/80 &bull; N: 78 &bull; S: 36.7°C</td>
-              <td class="px-6 py-5">
-                <span class="px-4 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500">Selesai</span>
-              </td>
-              <td class="px-6 py-5 text-gray-500 font-medium">Diteruskan</td>
-            </tr>
-            <!-- Row 2 -->
-            <tr class="border-b border-gray-50">
-              <td class="px-6 py-5 text-gray-700">A-002</td>
-              <td class="px-6 py-5 text-gray-800 font-medium">Dewi Lestari</td>
-              <td class="px-6 py-5 text-gray-600">Mata merah dan berair</td>
-              <td class="px-6 py-5 text-gray-600 text-xs">TD: 130/85 &bull; N: 82 &bull; S: 37.2°C</td>
-              <td class="px-6 py-5">
-                <span class="px-4 py-1.5 rounded-full text-xs font-medium" style="background-color: #fde8cc; color: #c87d2f;">Menunggu</span>
-              </td>
-              <td class="px-6 py-5">
-                <button class="px-5 py-2 rounded-lg text-white text-xs font-semibold" style="background-color: #2bb5a0;">Periksa</button>
-              </td>
-            </tr>
+          <tbody id="queue-table-body">
+            <tr>
+              <td colspan="6" class="px-6 py-5 text-center text-sm text-gray-500">Memuat daftar pasien menunggu...</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-    </main> 
+    </main>
+    <script src="/src/js/api.js"></script>
 </body>
   <style>
   /* 1. Gabungkan animasi slideRight jadi SATU deklarasi yang benar */
