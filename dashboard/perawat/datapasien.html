@@ -55,17 +55,23 @@
     <!-- search dan filter-->
 <div class="relative w-full flex ">
 
-  <input
-    type="text"
-    placeholder="Cari berdasarkan No RM atau NIK"
-    class="h-8 w-90 pl-10 pr-4 py-3 text-xs rounded-lg text-black mt-2 bg-white shadow-md outline-none focus:ring-2 focus:ring-[#3BC0A8]"
-  >
+<input
+  id="searchInput"
+  type="text"
+  placeholder="Cari berdasarkan No RM atau NIK"
+  class="h-8 w-90 pl-10 pr-4 py-3 text-xs rounded-lg text-black mt-2 bg-white shadow-md outline-none focus:ring-2 focus:ring-[#3BC0A8]"
+>
   <img src="/src/img/search.svg"class="w-4 absolute left-4 top-6 -translate-y-1/2 ">
 
-  <span class="  flex items-center text-white rounded-lg shadow-md shadow-gray-400 mt-3 w-42 pl-4 ml-6 h-7 rounded-lg bg-gradient-to-r from-[#3BC0A8] to-[#005461]  text-xs" >
-    <p class=" ">25/04/2026</p>
-     <img src="/src/img/datatanggal.svg" class=" w-4 h-4 text-right ml-auto mr-4" >
-  </span>
+  <div onclick="document.getElementById('tanggalPicker').showPicker()"
+  class="relative flex items-center text-white rounded-lg shadow-md shadow-gray-400 mt-3 w-42 pl-4 ml-6 h-7 bg-gradient-to-r from-[#3BC0A8] to-[#005461] text-xs cursor-pointer">
+
+        <p id="tanggalText">25/04/2026</p>
+
+        <img src="/src/img/datatanggal.svg" class="w-4 h-4 ml-auto mr-4">
+
+        <input type="date" id="tanggalPicker" class="absolute inset-0 opacity-0 cursor-pointer" onchange="ubahTanggal(this)">
+  </div>
 </div>
 
     <!-- atas header -->
@@ -687,9 +693,16 @@ class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden items-center justify-ce
 
 </div>
 
+    </div>
 
+    
+  </div>
 
+</div>
 
+<br>
+<br>
+</body>
 
 <script>
 function openDetailModal() {
@@ -705,67 +718,24 @@ function closeDetailModal() {
   modal.classList.add("hidden");
   modal.classList.remove("flex");
 }
+
+const searchInput = document.getElementById("searchInput");
+const rows = document.querySelectorAll("tbody tr");
+
+searchInput.addEventListener("input", function () {
+  const keyword = this.value.toLowerCase().trim();
+
+  rows.forEach(row => {
+    const text = row.innerText.toLowerCase();
+
+    if (text.includes(keyword)) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+});
 </script>
-    </div>
-
-    
-  </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-<br>
-<br>
-</body>
-
-
 
 
 </html>

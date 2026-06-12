@@ -52,10 +52,20 @@
     </h1>
 
     <div class="text-right ml-auto">      
-    <span class="  flex items-center text-black rounded-lg shadow-md shadow-gray-400 mt-3 w-42 pl-4 ml-6 h-9 rounded-lg bg-white  text-xs" >
-    <p class=" ">25/04/2026</p>
-    <img src="/src/img/datatanggal1.svg" class=" w-4 h-4 text-right ml-auto mr-4" >
-    </span>
+<div onclick="document.getElementById('tanggalPicker').showPicker()"
+class="relative flex items-center text-black rounded-lg shadow-md shadow-gray-400 mt-3 w-42 pl-4 ml-6 h-9 bg-white text-xs cursor-pointer">
+
+  <p id="tanggalText">25/04/2026</p>
+
+  <img src="/src/img/datatanggal1.svg" class="w-4 h-4 ml-auto mr-4">
+
+  <input
+    type="date"
+    id="tanggalPicker"
+    class="absolute inset-0 opacity-0 cursor-pointer"
+    onchange="ubahTanggal(this)"
+  >
+</div>
     </div>
     
     <div>
@@ -347,4 +357,18 @@
 <br>
 <br>
 </body>
+
+<script>
+function ubahTanggal(input) {
+  const tanggal = new Date(input.value);
+
+  const hari = String(tanggal.getDate()).padStart(2, "0");
+  const bulan = String(tanggal.getMonth() + 1).padStart(2, "0");
+  const tahun = tanggal.getFullYear();
+
+  document.getElementById("tanggalText").innerText =
+    `${hari}/${bulan}/${tahun}`;
+}
+</script>
+
 </html>
