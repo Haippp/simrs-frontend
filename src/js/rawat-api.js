@@ -1,4 +1,6 @@
-const API_HOST = "http://127.0.0.1:8000/api";
+const API_HOST = "http://127.0.0.1:8000/api"; // Test Local
+// const API_HOST = "https://rawat4b06.vps-poliban.my.id/api"; // Test server
+
 
 async function kirimAsesmenPasien(formElement) {
   // 1. Ambil data dari element form menggunakan FormData kustom
