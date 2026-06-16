@@ -1,7 +1,6 @@
 const API_HOST = "http://127.0.0.1:8000/api"; // Test Local
 // const API_HOST = "https://rawat4b06.vps-poliban.my.id/api"; // Test server
 
-
 async function kirimAsesmenPasien(formElement) {
   // 1. Ambil data dari element form menggunakan FormData kustom
   const formData = new FormData(formElement);
@@ -218,7 +217,7 @@ function displayAntrianUnit(idUnit) {
               <td class="px-6 py-5 text-gray-600 text-xs">-</td>
               <td class="px-6 py-5">${statusBadge}</td>
               <td class="px-6 py-5 text-gray-500 font-medium">
-                <button class="px-5 py-2 rounded-lg text-white text-xs font-semibold" style="background-color: #2bb5a0;">Periksa</button>
+                <button onclick="openPeriksaModal()" class="px-5 py-2 rounded-lg text-white text-xs font-semibold" style="background-color: #2bb5a0;">Periksa</button>
               </td>
             </tr>
           `;
