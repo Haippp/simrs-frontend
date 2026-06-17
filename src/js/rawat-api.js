@@ -1,6 +1,7 @@
 // kel1.auth_token user_id -> kel2.dokter user_id -> kel1.unit nama_unit
-const API_HOST = "http://192.168.238.180:8000/api"; // Test Local
-// const API_HOST = "https://rawat4b06.vps-poliban.my.id/api"; // Test server
+// const API_HOST = "http://192.168.238.180:8000/api"; // Test Local
+// const API_HOST = "https://rawat4b06.vps-poliban.my.id/api"; // server
+// const API_HOST = "https://67d1-2404-c0-c201-ad34-6d93-8e6b-958b-7ca4.ngrok-free.app/api"; // ngrox
 
 async function kirimAsesmenPasien(formElement) {
   // 1. Ambil data dari element form menggunakan FormData kustom
