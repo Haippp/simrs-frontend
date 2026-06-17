@@ -1,4 +1,5 @@
-const API_HOST = "http://127.0.0.1:8000/api"; // Test Local
+// kel1.auth_token user_id -> kel2.dokter user_id -> kel1.unit nama_unit
+const API_HOST = "http://192.168.238.180:8000/api"; // Test Local
 // const API_HOST = "https://rawat4b06.vps-poliban.my.id/api"; // Test server
 
 async function kirimAsesmenPasien(formElement) {
@@ -147,93 +148,90 @@ function getCookie(name) {
 }
 
 function displayAntrianUnit(idUnit) {
-  const apiPath = API_HOST + "/antrian/unit/" + idUnit;
+  const unitId = Number(idUnit) || 1;
+  const apiPath = API_HOST + "/antrian/unit/" + unitId;
   const total = document.getElementById("total-antrian");
   const menunggu = document.getElementById("menunggu");
   const nama = document.getElementById("nama-dipanggil");
   const nomorAntrian = document.getElementById("nomor-dipanggil");
-  const queueTableBody = document.getElementById("queue-table-body");
-  const queueDate = document.getElementById("queue-date");
+  const antrianSelanjutnya = document.getElementById("antrian-selanjutnya");
+
+  const getPasienObject = (item) =>
+    item?.pendaftaran?.pasien ||
+    item?.pasien ||
+    item?.data?.pasien ||
+    item?.data?.patient ||
+    {};
+
+  const getNamaPasien = (item) => {
+    const pasien = getPasienObject(item);
+    return (
+      pasien?.nama_lengkap ||
+      pasien?.nama ||
+      pasien?.nama_pasien ||
+      item?.nama_lengkap ||
+      item?.nama ||
+      "-"
+    );
+  };
 
   fetch(apiPath)
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
     .then((data) => {
-      if (!data || data.success === false) {
-        throw new Error(data?.message || "Respons API tidak valid.");
-      }
-
-      const antrian = data.data || {};
-      const menungguList = Array.isArray(antrian.menunggu)
-        ? antrian.menunggu
-        : [];
+      const payload = data && typeof data === "object" ? data.data || data : {};
+      const antrian = payload && typeof payload === "object" ? payload : {};
+      const menungguList = Array.isArray(antrian.menunggu) ? antrian.menunggu : [];
       const dipanggil = antrian.pemeriksaan_awal || null;
 
-      if (total)
-        total.innerText = String(menungguList.length + (dipanggil ? 1 : 0));
+      if (total) total.innerText = String(menungguList.length + (dipanggil ? 1 : 0));
       if (menunggu) menunggu.innerText = String(menungguList.length);
+
       if (dipanggil) {
-        if (nomorAntrian)
-          nomorAntrian.innerText = dipanggil.kode_antrian || "-";
-        if (nama) {
-          const namaPasien = dipanggil.pendaftaran?.pasien?.nama_lengkap || "-";
-          nama.innerText = namaPasien;
-        }
+        if (nomorAntrian) nomorAntrian.innerText = dipanggil.kode_antrian || dipanggil.nomor_antrian || "-";
+        if (nama) nama.innerText = getNamaPasien(dipanggil);
+      } else {
+        if (nomorAntrian) nomorAntrian.innerText = "–";
+        if (nama) nama.innerText = "Tidak ada";
       }
 
-      if (queueDate && data.tanggal) {
-        queueDate.innerText = new Date(data.tanggal).toLocaleDateString(
-          "id-ID",
-          {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          },
-        );
+      if (!antrianSelanjutnya) return;
+
+      if (menungguList.length === 0) {
+        antrianSelanjutnya.innerHTML = `
+          <div class="section-label mb-1">Antrian Selanjutnya</div>
+          <div class="queue-row">
+            <span class="name" style="color:#9ca3af;">Tidak ada antrian menunggu.</span>
+          </div>
+        `;
+        return;
       }
 
-      if (queueTableBody) {
-        if (menungguList.length === 0) {
-          queueTableBody.innerHTML = `
-            <tr>
-              <td colspan="6" class="px-6 py-5 text-center text-sm text-gray-500">
-                Tidak ada pasien yang sedang menunggu.
-              </td>
-            </tr>
+      antrianSelanjutnya.innerHTML = `
+        <div class="section-label mb-1">Antrian Selanjutnya</div>
+        ${menungguList.slice(0, 8).map((item) => {
+          const kode = item.kode_antrian || item.nomor_antrian || "-";
+          const namaPasien = getNamaPasien(item);
+          return `
+            <div class="queue-row">
+              <span class="num">${kode}</span>
+              <div class="divider"></div>
+              <span class="name">${namaPasien}</span>
+            </div>
           `;
-          return;
-        }
-
-        queueTableBody.innerHTML = menungguList
-          .slice(0, 10)
-          .map((item) => {
-            const pasien = item.pendaftaran?.pasien || {};
-            const statusBadge = `<span class="px-4 py-1.5 rounded-full text-xs font-medium bg-[#fde8cc] text-[#c87d2f]">Menunggu</span>`;
-            return `
-            <tr class="border-b border-gray-50">
-              <td class="px-6 py-5 text-gray-700">${item.kode_antrian || "-"}</td>
-              <td class="px-6 py-5 text-gray-800 font-medium">${pasien.nama_lengkap || "-"}</td>
-              <td class="px-6 py-5 text-gray-600">-</td>
-              <td class="px-6 py-5 text-gray-600 text-xs">-</td>
-              <td class="px-6 py-5">${statusBadge}</td>
-              <td class="px-6 py-5 text-gray-500 font-medium">
-                <button onclick="openPeriksaModal()" class="px-5 py-2 rounded-lg text-white text-xs font-semibold" style="background-color: #2bb5a0;">Periksa</button>
-              </td>
-            </tr>
-          `;
-          })
-          .join("");
-      }
+        }).join("")}
+      `;
     })
     .catch((error) => {
-      console.error("Gagal memuat data antrian dokter:", error);
-      if (queueTableBody) {
-        queueTableBody.innerHTML = `
-          <tr>
-            <td colspan="6" class="px-6 py-5 text-center text-sm text-red-500">
-              Terjadi kesalahan saat memuat daftar pasien.
-            </td>
-          </tr>
+      console.error("Gagal memuat data antrian:", error);
+      if (antrianSelanjutnya) {
+        antrianSelanjutnya.innerHTML = `
+          <div class="section-label mb-1">Antrian Selanjutnya</div>
+          <div class="queue-row">
+            <span class="name" style="color:#ef4444;">Gagal memuat data antrian.</span>
+          </div>
         `;
       }
     });

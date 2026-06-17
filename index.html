@@ -3,38 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirect to login kelompok 1</title>
+    <title>SIMRS</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: sans-serif;
+        background: #f5f5f5;
+        color: #555;
+      }
+      .loader {
+        text-align: center;
+      }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #ddd;
+        border-top-color: #4f86f7;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 12px;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
   </head>
   <body>
+    <!-- Tampilan sementara selama verifikasi token berlangsung -->
+    <div class="loader">
+      <div class="spinner"></div>
+      <p>Memeriksa sesi...</p>
+    </div>
+
+    <!-- Muat semua fungsi API terlebih dahulu -->
+    <script src="/src/js/daftar-api.js"></script>
+
+    <!-- Jalankan pemeriksaan auth setelah skrip siap -->
     <script>
-      function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(";").shift();
-        return null;
-      }
-
-      function setCookie(name, value, days) {
-        let expires = "";
-        if (days) {
-          const date = new Date();
-          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-          expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + value
-      }
-
-      // Contoh pemakaian: Menambahkan cookie bernama 'username' yang aktif selama 7 hari
-      setCookie("role", "perawat");
-      cookie = getCookie("role");
-
-      console.log(cookie);
-      console.log(cookie == "perawat");
-      if (cookie == "perawat") {
-        window.location.href = "dashboard/perawat";
-      } else if (cookie == "dokter") {
-        window.location.href = "dashboard/dokter";
-      }
+      checkAuthAndRedirect();
     </script>
   </body>
 </html>

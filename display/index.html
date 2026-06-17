@@ -343,7 +343,7 @@
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
 
-      const unit = urlParams.get("unit");
+      const unit = Number(urlParams.get("unit")) || 1;
       console.log(unit);
       displayAntrianUnit(unit);
     </script>

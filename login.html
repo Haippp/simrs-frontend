@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="./src/output.css" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/src/img/web-icon.png">
   <title>Login Page</title>
 </head>
 
 <body class="flex">
 
-  <div class=" bg-gradient-to-r from-[#0A8A8E] to-[#004C57] w-full flex">
+  <div class="bg-gradient-to-r from-[#0A8A8E] to-[#004C57] w-full flex">
 
-    
+    <!-- KIRI -->
     <div class="block">
       <img src="/src/img/rsv.svg" class=""/>
     </div>
@@ -20,74 +21,198 @@
     <div class="w-full md:w-1/2 flex items-center justify-center px-10 py-12">
 
       <!-- FORM -->
-      <form class="w-full max-w-md text-white">
+      <div class="w-full max-w-md text-white">
 
         <!-- JUDUL -->
         <div class="text-center mb-10">
           <h1 class="text-4xl font-bold mb-2">Selamat Datang</h1>
-
-          <p class="text-white text-sm">Pilih peran dan poli anda untuk melanjutkan</p>
+          <p class="text-white text-sm">Masuk menggunakan akun yang telah terdaftar</p>
         </div>
 
-        <!-- PERAWAT DAN DOKTER -->
-<div class="flex gap-4 mb-8">
+        <!-- PERAN (hanya informasi visual, role ditentukan dari server) -->
+        <div class="flex gap-4 mb-8">
+          <div class="flex-1 bg-white/15 rounded-xl py-4 flex items-center justify-center gap-2 shadow-lg border border-[#004C57]">
+            <img src="/src/img/perawat.svg" class="w-8 h-8">
+            <span class="text-white">Perawat</span>
+          </div>
+          <div class="flex-1 bg-white/15 rounded-xl py-4 flex items-center justify-center gap-2 shadow-lg border border-[#004C57]">
+            <img src="/src/img/dokter.svg" class="w-8 h-8">
+            <span class="text-white">Dokter</span>
+          </div>
+        </div>
 
+        <!-- PESAN ERROR -->
+        <div id="error-msg" class="hidden mb-4 px-4 py-3 bg-red-500/20 border border-red-400/50 rounded-xl text-sm text-red-200 text-center">
+        </div>
 
-  <a href="./loginperawat.html" class="flex-1 bg-white/15 hover:bg-[#3BC0A8]  rounded-xl py-4 flex items-center justify-center gap-2 shadow-lg border border-[#004C57]">
-    <img src="/src/img/perawat.svg" class="w-8 h-8">
-    <span class="text-white">Perawat</span></a>
-
-  <a href="./logindokter.html" class="flex-1 bg-white/15 hover:bg-[#3BC0A8]  rounded-xl py-4 flex items-center justify-center gap-2 shadow-lg border border-[#004C57]">
-    <img src="/src/img/dokter.svg" class="w-8 h-8">
-    <span class="text-white">Dokter</span></a>
-
-</div>
-        <!-- NAMA -->
+        <!-- EMAIL -->
         <div class="flex flex-col mb-6">
-
-          <label class="mb-2 text-lg font-medium">Nama Pengguna</label>
-
-          <input type="text" placeholder="Masukan nama pengguna anda" class="bg-white/15 rounded-xl px-5 py-4 outline-none border border-[#004C57] placeholder:text-white/40 focus:ring-2 focus:ring-[#3BC0A8]">
-
+          <label class="mb-2 text-lg font-medium" for="input-email">Email</label>
+          <input
+            id="input-email"
+            type="email"
+            placeholder="Masukan email anda"
+            autocomplete="email"
+            class="bg-white/15 rounded-xl px-5 py-4 outline-none border border-[#004C57] placeholder:text-white/40 focus:ring-2 focus:ring-[#3BC0A8]"
+          />
         </div>
 
         <!-- PASSWORD -->
         <div class="flex flex-col mb-6">
-
-          <label class="mb-2 text-lg font-medium">Kata Sandi</label>
-
-          <input type="password" placeholder="Masukan sandi anda"  class="bg-white/15 rounded-xl px-5 py-4 outline-none border border-[#004C57] placeholder:text-white/40 focus:ring-2 focus:ring-[#3BC0A8]">
-
+          <label class="mb-2 text-lg font-medium" for="input-password">Kata Sandi</label>
+          <div class="relative">
+            <input
+              id="input-password"
+              type="password"
+              placeholder="Masukan sandi anda"
+              autocomplete="current-password"
+              class="w-full bg-white/15 rounded-xl px-5 py-4 pr-12 outline-none border border-[#004C57] placeholder:text-white/40 focus:ring-2 focus:ring-[#3BC0A8]"
+            />
+            <!-- Toggle show/hide password -->
+            <button
+              type="button"
+              id="btn-toggle-password"
+              class="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition"
+              aria-label="Tampilkan kata sandi"
+            >
+              <!-- Eye icon -->
+              <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              <!-- Eye-off icon -->
+              <svg id="icon-eye-off" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.956 9.956 0 012.293-3.95M6.634 6.634A9.956 9.956 0 0112 5c4.477 0 8.268 2.943 9.542 7a10.05 10.05 0 01-1.395 2.82M3 3l18 18" />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <!-- POLI -->
-        <div class="flex flex-col mb-8">
-
-          <label class="mb-2 text-lg font-medium">Poli</label>
-
-          <select class="bg-white/15 text-white/50 rounded-xl px-5 py-4 outline-none appearance-none border border-[#004C57] text-white focus:ring-2 focus:ring-[#3BC0A8] ">
-            <option class="text-black">Pilih poli anda</option>
-            <option class="text-black">Poli Umum</option>
-            <option class="text-black">Poli Gigi</option>
-            <option class="text-black">Poli Anak</option>
-        </select>
-            <img src="/src/img/panahbawah.svg"class="w-4 absolute right-22 top-185 -translate-y-22 pointer-events-none ">
-            
+        <!-- INGAT SAYA -->
+        <div class="flex items-center gap-3 mb-10">
+          <input
+            id="input-remember"
+            type="checkbox"
+            class="w-4 h-4 accent-[#3BC0A8] cursor-pointer"
+          />
+          <label for="input-remember" class="text-sm cursor-pointer select-none">Ingat saya selama 30 hari</label>
         </div>
 
         <!-- BUTTON -->
         <div class="flex flex-col items-center">
-
-          <button type="submit" class="bg-white/15 hover:bg-[#3BC0A8]  px-24 py-3 rounded-xl shadow-lg border border-white/10"> Masuk</button>
-          <a href="lupakatasandi.html" class="text-sm text-white/70 mt-4 hover:text-white">Lupa kata sandi?</a>
-
+          <button
+            id="btn-login"
+            type="button"
+            class="w-full bg-white/15 hover:bg-[#3BC0A8] disabled:opacity-50 disabled:cursor-not-allowed px-24 py-3 rounded-xl shadow-lg border border-white/10 transition-colors duration-200 flex items-center justify-center gap-2"
+          >
+            <span id="btn-login-text">Masuk</span>
+            <!-- Spinner (tersembunyi saat idle) -->
+            <svg id="btn-spinner" class="hidden w-4 h-4 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+            </svg>
+          </button>
         </div>
 
-      </form>
-
+      </div>
     </div>
-
   </div>
+
+  <!-- Muat fungsi API -->
+  <script src="/src/js/daftar-api.js"></script>
+
+  <script>
+    // ── Elemen DOM ──────────────────────────────────────────────
+    const inputEmail    = document.getElementById("input-email");
+    const inputPassword = document.getElementById("input-password");
+    const inputRemember = document.getElementById("input-remember");
+    const btnLogin      = document.getElementById("btn-login");
+    const btnText       = document.getElementById("btn-login-text");
+    const btnSpinner    = document.getElementById("btn-spinner");
+    const errorMsg      = document.getElementById("error-msg");
+    const btnToggle     = document.getElementById("btn-toggle-password");
+    const iconEye       = document.getElementById("icon-eye");
+    const iconEyeOff    = document.getElementById("icon-eye-off");
+
+    // ── Toggle show/hide password ───────────────────────────────
+    btnToggle.addEventListener("click", () => {
+      const isPassword = inputPassword.type === "password";
+      inputPassword.type = isPassword ? "text" : "password";
+      iconEye.classList.toggle("hidden", isPassword);
+      iconEyeOff.classList.toggle("hidden", !isPassword);
+    });
+
+    // ── Tampilkan / sembunyikan pesan error ─────────────────────
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.remove("hidden");
+    }
+    function hideError() {
+      errorMsg.classList.add("hidden");
+    }
+
+    // ── Ubah state tombol saat loading ──────────────────────────
+    function setLoading(loading) {
+      btnLogin.disabled = loading;
+      btnText.textContent = loading ? "Memproses..." : "Masuk";
+      btnSpinner.classList.toggle("hidden", !loading);
+    }
+
+    // ── Handler login ───────────────────────────────────────────
+    async function handleLogin() {
+      hideError();
+
+      const email      = inputEmail.value.trim();
+      const password   = inputPassword.value;
+      const rememberMe = inputRemember.checked;
+
+      // Validasi sisi klien
+      if (!email) {
+        showError("Email tidak boleh kosong.");
+        inputEmail.focus();
+        return;
+      }
+      if (!password) {
+        showError("Kata sandi tidak boleh kosong.");
+        inputPassword.focus();
+        return;
+      }
+
+      setLoading(true);
+
+      // Panggil fungsi login dari daftar-api.js
+      const result = await login(email, password, rememberMe);
+
+      setLoading(false);
+
+      if (!result.success) {
+        showError(result.message);
+        return;
+      }
+
+      // Redirect sesuai role yang dikembalikan server
+      switch (result.role) {
+        case "dokter":
+          window.location.href = "dashboard/dokter";
+          break;
+        case "perawat":
+          window.location.href = "dashboard/perawat";
+          break;
+        default:
+          showError("Role tidak dikenal: " + result.role);
+      }
+    }
+
+    // ── Event listeners ─────────────────────────────────────────
+    btnLogin.addEventListener("click", handleLogin);
+
+    // Tekan Enter di field manapun → trigger login
+    [inputEmail, inputPassword].forEach(el => {
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") handleLogin();
+      });
+    });
+  </script>
 
 </body>
 </html>

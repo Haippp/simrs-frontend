@@ -528,28 +528,39 @@
     DIAGNOSIS
   </h3>
 
-  <!-- Diagnosis Utama -->
-  <div class="mt-6">
-    <label class="block mb-2 font-medium text-gray-700">
-      DIAGNOSIS UTAMA
-    </label>
+  <form id="diagnosisForm">
+    <input type="hidden" id="id_asesmen" value="1">
+    <input type="hidden" id="id_dokter" value="1">
+    <input type="hidden" id="id_antrian" value="1">
+    <input type="hidden" id="id_pasien" value="1">
 
-<input
-  type="text"
-  placeholder="Ketik diagnosis..."
-  class="w-full border border-[#3BC0A8] rounded-xl px-4 py-3 bg-white focus:outline-none text-gray-700">
-  </div>
+    <!-- Diagnosis Utama -->
+    <div class="mt-6">
+      <label class="block mb-2 font-medium text-gray-700">
+        DIAGNOSIS UTAMA
+      </label>
 
-  <!-- Tindakan Medis -->
-  <div class="mt-6">
-    <label class="block mb-2 font-medium text-gray-700">
-      TINDAKAN MEDIS
-    </label>
+      <input
+        id="diagnosaInput"
+        name="diagnosa"
+        type="text"
+        placeholder="Ketik diagnosis..."
+        class="w-full border border-[#3BC0A8] rounded-xl px-4 py-3 bg-white focus:outline-none text-gray-700">
+    </div>
 
-<textarea
-  placeholder="Ketik tindakan..."
-  class="w-full min-h-[120px] border border-[#3BC0A8] rounded-xl px-4 py-3 bg-white resize-none focus:outline-none text-gray-700"></textarea>
-  </div>
+    <!-- Tindakan Medis -->
+    <div class="mt-6">
+      <label class="block mb-2 font-medium text-gray-700">
+        TINDAKAN MEDIS
+      </label>
+
+      <textarea
+        id="tindakanInput"
+        name="tindakan_medis"
+        placeholder="Ketik tindakan..."
+        class="w-full min-h-[120px] border border-[#3BC0A8] rounded-xl px-4 py-3 bg-white resize-none focus:outline-none text-gray-700"></textarea>
+    </div>
+  </form>
 
 </div>
 
@@ -780,9 +791,14 @@ function showTab(tabId, btn = null) {
   }
 }
 
-function nextTab() {
+async function nextTab() {
 
   if (currentTab < tabs.length - 1) {
+
+    if (currentTab === 2) {
+      const saved = await submitRekamMedik();
+      if (!saved) return;
+    }
 
     currentTab++;
 
@@ -796,6 +812,59 @@ function nextTab() {
     // Tab terakhir
     openSuccessModal();
 
+  }
+}
+
+async function submitRekamMedik() {
+  const diagnosaInput = document.getElementById("diagnosaInput");
+  const tindakanInput = document.getElementById("tindakanInput");
+
+  if (!diagnosaInput || !tindakanInput) return false;
+
+  const diagnosa = diagnosaInput.value.trim();
+  const tindakanMedis = tindakanInput.value.trim();
+
+  if (!diagnosa || !tindakanMedis) {
+    alert("Isi diagnosis utama dan tindakan medis terlebih dahulu.");
+    return false;
+  }
+
+  const payload = {
+    id_asesmen: Number(document.getElementById("id_asesmen")?.value || 0),
+    id_dokter: Number(document.getElementById("id_dokter")?.value || 0),
+    id_antrian: Number(document.getElementById("id_antrian")?.value || 0),
+    id_pasien: Number(document.getElementById("id_pasien")?.value || 0),
+    diagnosa,
+    tindakan_medis: tindakanMedis,
+  };
+
+  try {
+    const response = await fetch(`${API_HOST}/rekam-medik`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.error("Gagal menyimpan rekam medik:", result);
+      alert(
+        result?.message ||
+          "Gagal menyimpan diagnosis ke rekam medik."
+      );
+      return false;
+    }
+
+    console.log("Rekam medik berhasil disimpan:", result);
+    return true;
+  } catch (error) {
+    console.error("Error saat menyimpan rekam medik:", error);
+    alert("Terjadi kesalahan saat mengirim diagnosis ke server.");
+    return false;
   }
 }
 
