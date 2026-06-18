@@ -245,6 +245,7 @@ async function ShowDetailProfile(userId, role) {
     return;
   }
 
+  console.log(userProfile)
   const unitText = await getUnitName(userProfile.id_unit);
   const username = userProfile.nama_perawat || userProfile.nama_dokter
 
@@ -255,6 +256,7 @@ async function ShowDetailProfile(userId, role) {
   for (const el of object) {
     el.textContent = username || "-";
   }
+
   for (const el of unitNameEls) {
     el.textContent = unitText || "-";
   }
