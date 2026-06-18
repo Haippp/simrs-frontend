@@ -46,7 +46,7 @@
           <p class="text-gray-500 text-sm mt-1">Riwata Diagnosis dan Pemberian Resep</p>
         </div>
         <!-- Unduh PDF Button -->
-        <button class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-700 text-sm font-medium shadow-sm hover:bg-gray-50 transition">
+        <button id="downloadExcel" class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-300 bg-white text-gray-700 text-sm font-medium shadow-sm hover:bg-gray-50 transition">
           <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
           </svg>
@@ -823,8 +823,24 @@ function ubahTanggal(input) {
     `${hari}/${bulan}/${tahun}`;
 }
 
+document.getElementById("downloadExcel").addEventListener("click", function () {
+
+  const data = [
+    ["No Antrian", "Nama Pasien", "Keluhan", "Diagnosis"],
+    ["A-001", "Budi Santoso", "Penglihatan saya buram saat sore hari", "Miopia"]
+  ];
+
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(data);
+
+  XLSX.utils.book_append_sheet(wb, ws, "Riwayat Diagnosis");
+
+  XLSX.writeFile(wb, "Riwayat_Diagnosis.xlsx");
+});
 
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 <style>
   html {
