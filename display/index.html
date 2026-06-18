@@ -1,277 +1,351 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Display Antrian – Rumah Sakit Viamedika</title>
-  <link rel="stylesheet" href="/src/output.css">
-  <link rel="icon" type="image/png" href="/src/img/web-icon.png">
-  <script src="/src/js/api.js"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Antrian – Rumah Sakit Viamedika</title>
+    <link rel="stylesheet" href="/src/output.css" />
+    <link rel="icon" type="image/png" href="/src/img/web-icon.png" />
+    <script src="/src/js/rawat-api.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 
-    * { font-family: 'Inter', sans-serif; box-sizing: border-box; }
+      * {
+        font-family: "Inter", sans-serif;
+        box-sizing: border-box;
+      }
 
-    body {
-      background: #eef3f5;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+      body {
+        background: #eef3f5;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
 
-    /* ── Header gradient ── */
-    .header-bg {
-      background: linear-gradient(135deg, #1a7a72 0%, #0f5c55 100%);
-    }
+      /* ── Header gradient ── */
+      .header-bg {
+        background: linear-gradient(135deg, #1a7a72 0%, #0f5c55 100%);
+      }
 
-    /* ── Called-number card gradient ── */
-    .called-card {
-      background: linear-gradient(160deg, #2aada0 0%, #0f6b63 60%, #0a4f49 100%);
-    }
+      /* ── Called-number card gradient ── */
+      .called-card {
+        background: linear-gradient(
+          160deg,
+          #2aada0 0%,
+          #0f6b63 60%,
+          #0a4f49 100%
+        );
+      }
 
-    /* ── Section label bar ── */
-    .section-label {
-      border-left: 4px solid #1a7a72;
-      padding-left: 10px;
-      color: #1a7a72;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
+      /* ── Section label bar ── */
+      .section-label {
+        border-left: 4px solid #1a7a72;
+        padding-left: 10px;
+        color: #1a7a72;
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
 
-    /* ── Queue row items ── */
-    .queue-row {
-      background: #fff;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      padding: 0;
-      overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
+      /* ── Queue row items ── */
+      .queue-row {
+        background: #fff;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+      }
 
-    .queue-row .num {
-      color: #1a7a72;
-      font-weight: 800;
-      font-size: 1.75rem;
-      letter-spacing: -0.03em;
-      min-width: 130px;
-      padding: 18px 20px;
-    }
+      .queue-row .num {
+        color: #1a7a72;
+        font-weight: 800;
+        font-size: 1.75rem;
+        letter-spacing: -0.03em;
+        min-width: 130px;
+        padding: 18px 20px;
+      }
 
-    .queue-row .divider {
-      width: 1px;
-      background: #d1d5db;
-      align-self: stretch;
-      margin: 12px 0;
-    }
+      .queue-row .divider {
+        width: 1px;
+        background: #d1d5db;
+        align-self: stretch;
+        margin: 12px 0;
+      }
 
-    .queue-row .name {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #1f2937;
-      padding: 18px 24px;
-    }
+      .queue-row .name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #1f2937;
+        padding: 18px 24px;
+      }
 
-    /* ── Stat boxes ── */
-    .stat-box {
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px 24px;
-      min-width: 110px;
-      text-align: left;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
+      /* ── Stat boxes ── */
+      .stat-box {
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px 24px;
+        min-width: 110px;
+        text-align: left;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+      }
 
-    .stat-box .val {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #1a7a72;
-      line-height: 1;
-    }
+      .stat-box .val {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #1a7a72;
+        line-height: 1;
+      }
 
-    .stat-box .lbl {
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: #9ca3af;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
+      .stat-box .lbl {
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: #9ca3af;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
 
-    /* ── Ticker ── */
-    .ticker-wrap {
-      background: #1a7a72;
-      overflow: hidden;
-      white-space: nowrap;
-    }
+      /* ── Ticker ── */
+      .ticker-wrap {
+        background: #1a7a72;
+        overflow: hidden;
+        white-space: nowrap;
+      }
 
-    .ticker-inner {
-      display: inline-block;
-      white-space: nowrap;
-      animation: ticker-scroll 40s linear infinite;
-      color: #fff;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0 20px;
-    }
+      .ticker-inner {
+        display: inline-block;
+        white-space: nowrap;
+        animation: ticker-scroll 40s linear infinite;
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0 20px;
+      }
 
-    @keyframes ticker-scroll {
-      0%   { transform: translateX(100vw); }
-      100% { transform: translateX(-100%); }
-    }
+      @keyframes ticker-scroll {
+        0% {
+          transform: translateX(100vw);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
 
-    /* ── Clock ── */
-    #clock { font-variant-numeric: tabular-nums; }
-  </style>
-</head>
-<body>
-
-  <!-- ══════════════════════════════════════════════
+      /* ── Clock ── */
+      #clock {
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══════════════════════════════════════════════
        HEADER
   ══════════════════════════════════════════════ -->
-  <header class="header-bg px-8 py-4 flex items-center justify-between">
-    <!-- Logo -->
-    <div class="flex items-center gap-3">
-      <img src="/src/img/Logoputih.svg" alt="Logo Rumah Sakit Viamedika"
-           class="h-12"
-           onerror="this.style.display='none';document.getElementById('logo-text').style.display='flex'"/>
-      <!-- Fallback text logo -->
-      <div id="logo-text" class="hidden items-center gap-2">
-        <div class="bg-white rounded-md p-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-teal-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
-          </svg>
-        </div>
-        <div class="leading-tight">
-          <div class="text-white font-bold text-base leading-none">Rumah Sakit</div>
-          <div class="text-white font-bold text-base leading-none">Viamedika</div>
+    <header class="header-bg px-8 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <img
+          src="/src/img/Logoputih.svg"
+          alt="Logo Rumah Sakit Viamedika"
+          class="h-12"
+          onerror="
+            this.style.display = 'none';
+            document.getElementById('logo-text').style.display = 'flex';
+          " />
+        <!-- Fallback text logo -->
+        <div id="logo-text" class="hidden items-center gap-2">
+          <div class="bg-white rounded-md p-1.5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7 text-teal-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4v16m8-8H4" />
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <div class="text-white font-bold text-base leading-none">
+              Rumah Sakit
+            </div>
+            <div class="text-white font-bold text-base leading-none">
+              Viamedika
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Date & Time -->
-    <div class="text-right">
-      <div class="text-white text-sm font-medium opacity-80 leading-tight">Tanggal</div>
-      <div id="date-display" class="text-white font-bold text-2xl leading-tight"></div>
-    </div>
-    <div class="text-right ml-10">
-      <div class="text-white text-sm font-medium opacity-80 leading-tight">Waktu</div>
-      <div id="clock" class="text-white font-bold text-2xl leading-tight"></div>
-    </div>
-  </header>
+      <!-- Date & Time -->
+      <div class="text-right">
+        <div class="text-white text-sm font-medium opacity-80 leading-tight">
+          Tanggal
+        </div>
+        <div
+          id="date-display"
+          class="text-white font-bold text-2xl leading-tight"></div>
+      </div>
+      <div class="text-right ml-10">
+        <div class="text-white text-sm font-medium opacity-80 leading-tight">
+          Waktu
+        </div>
+        <div
+          id="clock"
+          class="text-white font-bold text-2xl leading-tight"></div>
+      </div>
+    </header>
 
-  <!-- ══════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════
        MAIN CONTENT
   ══════════════════════════════════════════════ -->
-  <main class="flex-1 px-10 py-8 grid grid-cols-2 gap-8">
+    <main class="flex-1 px-10 py-8 grid grid-cols-2 gap-8">
+      <!-- ── LEFT COLUMN ── -->
+      <div class="flex flex-col gap-6">
+        <!-- Poly & Doctor -->
+        <h2 class="text-2xl font-bold text-gray-800 -mb-2">
+          Poli Mata &nbsp;–&nbsp; dr. Ahmad Fauzi
+        </h2>
 
-    <!-- ── LEFT COLUMN ── -->
-    <div class="flex flex-col gap-6">
+        <!-- Sedang Dipanggil -->
+        <div>
+          <div class="section-label mb-3">Sedang Dipanggil</div>
+          <div
+            class="called-card rounded-2xl px-10 py-8 flex flex-col items-center justify-center min-h-[210px]">
+            <span
+              class="text-white font-black text-7xl tracking-tight leading-none drop-shadow-md"
+              id="nomor-dipanggil"
+              >A–000</span
+            >
+            <div class="border-b border-white/40 w-3/4 my-4"></div>
+            <span
+              class="text-white font-semibold text-2xl tracking-wide"
+              id="nama-dipanggil"
+              >Pasien A</span
+            >
+          </div>
+        </div>
 
-      <!-- Poly & Doctor -->
-      <h2 class="text-2xl font-bold text-gray-800 -mb-2">
-        Poli Mata &nbsp;–&nbsp; dr. Ahmad Fauzi
-      </h2>
-
-      <!-- Sedang Dipanggil -->
-      <div>
-        <div class="section-label mb-3">Sedang Dipanggil</div>
-        <div class="called-card rounded-2xl px-10 py-8 flex flex-col items-center justify-center min-h-[210px]">
-          <span class="text-white font-black text-7xl tracking-tight leading-none drop-shadow-md" id="nomor-dipanggil">A–000</span>
-          <div class="border-b border-white/40 w-3/4 my-4"></div>
-          <span class="text-white font-semibold text-2xl tracking-wide" id="nama-dipanggil">Pasien A</span>
+        <!-- Jumlah Antrian -->
+        <div>
+          <div class="section-label mb-3">Jumlah Antrian</div>
+          <div class="flex gap-4">
+            <div class="stat-box">
+              <div class="val" id="total-antrian">0</div>
+              <div class="lbl">Total Antrian</div>
+            </div>
+            <div class="stat-box">
+              <div class="val" id="menunggu">0</div>
+              <div class="lbl">Menunggu</div>
+            </div>
+            <div class="stat-box">
+              <div class="val">0</div>
+              <div class="lbl">Selesai</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Jumlah Antrian -->
-      <div>
-        <div class="section-label mb-3">Jumlah Antrian</div>
-        <div class="flex gap-4">
-          <div class="stat-box">
-            <div class="val" id="total-antrian">0</div>
-            <div class="lbl">Total Antrian</div>
-          </div>
-          <div class="stat-box">
-            <div class="val" id="menunggu">0</div>
-            <div class="lbl">Menunggu</div>
-          </div>
-          <div class="stat-box">
-            <div class="val">0</div>
-            <div class="lbl">Selesai</div>
-          </div>
-        </div>
+      <!-- ── RIGHT COLUMN ── -->
+      <div class="flex flex-col gap-4" id="antrian-selanjutnya">
+        <div class="section-label mb-1">Antrian Selanjutnya</div>
       </div>
-    </div>
+    </main>
 
-    <!-- ── RIGHT COLUMN ── -->
-    <div class="flex flex-col gap-4" id="antrian-selanjutnya">
-      <div class="section-label mb-1" >Antrian Selanjutnya</div>
-
-    </div>
-
-  </main>
-
-  <!-- ══════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════
        RUNNING TEXT TICKER
   ══════════════════════════════════════════════ -->
-  <footer class="ticker-wrap py-3 flex items-center gap-3">
-    <!-- Speaker icon -->
-    <div class="flex-shrink-0 pl-4">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
-      </svg>
-    </div>
-    <div class="overflow-hidden flex-1">
-      <span class="ticker-inner">
-        Selamat datang di Rumah Sakit Viamedika &nbsp;&bull;&nbsp;
-        Mohon perhatikan nomor antrian yang dipanggil &nbsp;&bull;&nbsp;
-        Harap menjaga ketenangan di area tunggu &nbsp;&bull;&nbsp;
-        Terima kasih atas kepercayaan Anda kepada kami &nbsp;&bull;&nbsp;
-        Selamat datang di Rumah Sakit Viamedika &nbsp;&bull;&nbsp;
-        Mohon perhatikan nomor antrian yang dipanggil &nbsp;&bull;&nbsp;
-        Harap menjaga ketenangan di area tunggu
-      </span>
-    </div>
-  </footer>
+    <footer class="ticker-wrap py-3 flex items-center gap-3">
+      <!-- Speaker icon -->
+      <div class="flex-shrink-0 pl-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" />
+        </svg>
+      </div>
+      <div class="overflow-hidden flex-1">
+        <span class="ticker-inner">
+          Selamat datang di Rumah Sakit Viamedika &nbsp;&bull;&nbsp; Mohon
+          perhatikan nomor antrian yang dipanggil &nbsp;&bull;&nbsp; Harap
+          menjaga ketenangan di area tunggu &nbsp;&bull;&nbsp; Terima kasih atas
+          kepercayaan Anda kepada kami &nbsp;&bull;&nbsp; Selamat datang di
+          Rumah Sakit Viamedika &nbsp;&bull;&nbsp; Mohon perhatikan nomor
+          antrian yang dipanggil &nbsp;&bull;&nbsp; Harap menjaga ketenangan di
+          area tunggu
+        </span>
+      </div>
+    </footer>
 
-  <!-- ══════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════
        CLOCK SCRIPT
   ══════════════════════════════════════════════ -->
-  <script>
-    const DAYS_ID   = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-    const MONTHS_ID = ['Januari','Februari','Maret','April','Mei','Juni',
-                       'Juli','Agustus','September','Oktober','November','Desember'];
+    <script>
+      const DAYS_ID = [
+        "Minggu",
+        "Senin",
+        "Selasa",
+        "Rabu",
+        "Kamis",
+        "Jumat",
+        "Sabtu",
+      ];
+      const MONTHS_ID = [
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Agustus",
+        "September",
+        "Oktober",
+        "November",
+        "Desember",
+      ];
 
-    function pad(n){ return String(n).padStart(2,'0'); }
+      function pad(n) {
+        return String(n).padStart(2, "0");
+      }
 
-    function tick(){
-      const now = new Date();
-      // Date
-      const day   = DAYS_ID[now.getDay()];
-      const date  = now.getDate();
-      const month = MONTHS_ID[now.getMonth()];
-      const year  = now.getFullYear();
-      document.getElementById('date-display').textContent =
-        `${day}, ${pad(date)} ${month} ${year}`;
-      // Time
-      document.getElementById('clock').textContent =
-        `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-    }
+      function tick() {
+        const now = new Date();
+        // Date
+        const day = DAYS_ID[now.getDay()];
+        const date = now.getDate();
+        const month = MONTHS_ID[now.getMonth()];
+        const year = now.getFullYear();
+        document.getElementById("date-display").textContent =
+          `${day}, ${pad(date)} ${month} ${year}`;
+        // Time
+        document.getElementById("clock").textContent =
+          `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+      }
 
-    tick();
-    setInterval(tick, 1000);
+      tick();
+      setInterval(tick, 1000);
 
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(queryString)
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
 
-    const unit = urlParams.get('unit')
-    console.log(unit)
-    displayAntrianUnit(unit)
-  </script>
-</body>
+      const unit = Number(urlParams.get("unit")) || 1;
+      console.log(unit);
+      displayAntrianUnit(unit);
+    </script>
+  </body>
 </html>

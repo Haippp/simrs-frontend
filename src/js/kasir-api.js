@@ -1,0 +1,1 @@
+// const API_HOST = "https://kasir4b06.vps-poliban.my.id/api"; // Test server
