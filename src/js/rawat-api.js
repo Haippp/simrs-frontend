@@ -134,7 +134,7 @@ async function displayAntrianUnit(idUnit) {
   };
 
   try {
-    const response = await fetch(API_BASE_URL + "/antrian/unit/" + unitId, {
+    const response = await fetch(API_HOST + "/antrian/unit/" + unitId, {
       method: "GET",
       headers: HEADERS_GET,
     });
