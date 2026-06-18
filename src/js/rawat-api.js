@@ -249,7 +249,7 @@ async function ShowDetailProfile(userId, role) {
   const username = userProfile.nama_perawat || userProfile.nama_dokter
 
   if (usernameEl) {
-    usernameEl.innerText = username
+    usernameEl.innerText = usernameElClass
   }
 
   for (const el of object) {
