@@ -16,10 +16,10 @@
     <img src="/src/img/Logoputih.svg" class="w-40 h-40 ml-6 " >
 
     <!--header atas Kanan -->
-      <div class="text-white ml-auto mr-4 pr-4">
+      <div class="text-white ml-auto mr-4 pr-4 text-right">
         <a href="profil.html"> 
-        <p>Ns. Nur Wati</p>
-        <p>Perawat Poli Mata</p>
+        <p id="nama-perawat">...</p>
+        <p>Perawat <span class="nama-unit">...</span></p>
         </a>
       </div>
         <a href="profil.html"> 
@@ -49,7 +49,7 @@
 <!-- Menu Atas -->
   <main class="flex-1 p-4  ">
       <h1 class="text-3xl text-[#3BC0A8]  ">
-      Antrian Poli Umum
+      Antrian <span class="nama-unit">...</span>
     </h1>
     <p class="text-black text-xs">Konfirmasi & Asesmen</p>
 
@@ -113,7 +113,7 @@
     <div class="bg-white rounded-2xl shadow-md shadow-gray-400 overflow-hidden">
     
     <div class="flex  items-center bg-gradient-to-r from-[#3BC0A8] to-[#005461] text-white px-8 py-4 shadow-md shadow-gray-400 blur-in">
-      <p class=" text-center flex items-center gap-4"><img src="/src/img/daftar.svg" > Daftar Antrian Poli Umum</p>
+      <p class=" text-center flex items-center gap-4"><img src="/src/img/daftar.svg" > Daftar Antrian <span class="nama-unit">...</span></p>
       <p class="text-sm ml-auto">Sabtu, 25 April 2026</p>
     </div>
 
@@ -524,4 +524,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <script src="/src/js/rawat-api.js"></script>
+<script src="/src/js/daftar-api.js"></script>
+<script>
+  requireAuth("perawat").then(sesi => {
+    console.log(sesi.userId, sesi.role)
+    ShowDetailProfile(sesi.userId, sesi.role);
+  });
+</script>
 </html>

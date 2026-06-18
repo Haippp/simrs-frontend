@@ -1,7 +1,7 @@
 // kel1.auth_token user_id -> kel2.dokter user_id -> kel1.unit nama_unit
 // const API_HOST = "http://192.168.238.180:8000/api"; // Test Local
 // const API_HOST = "https://rawat4b06.vps-poliban.my.id/api"; // server
-// const API_HOST = "https://67d1-2404-c0-c201-ad34-6d93-8e6b-958b-7ca4.ngrok-free.app/api"; // ngrox
+const API_HOST = "https://8e59-2404-c0-c201-ad34-41ca-403b-fc3-3216.ngrok-free.app/api"; // ngrox
 
 async function kirimAsesmenPasien(formElement) {
   // 1. Ambil data dari element form menggunakan FormData kustom
@@ -236,4 +236,43 @@ function displayAntrianUnit(idUnit) {
         `;
       }
     });
+}
+
+async function checkProfileUser(role, userId) {
+  const url = API_HOST + `/${role}`;
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      // Hapus Content-Type dari GET — ini yang trigger preflight CORS
+      "Accept": "application/json",
+      "ngrok-skip-browser-warning": "true",
+    },
+  });
+
+  if (!response.ok) {
+    console.warn("[checkProfileUser] Gagal:", response.status);
+    return null;
+  }
+
+  const result = await response.json();
+  for (const data of result.data) {
+    if (data.id_user == userId) {
+      return data
+    }
+  }
+  return null;
+}
+
+async function ShowDetailProfile(userId, role) {
+  const unitName = document.getElementsByClassName('nama-unit');
+  const NsName = document.getElementById("nama-perawat")
+
+  // Tambah await — sebelumnya lupa await jadi userProfile isinya Promise, bukan data
+  const userProfile = await checkProfileUser(role, userId);
+  const text = await getUnitName(userProfile.id_unit);
+
+  NsName.innerText = userProfile.nama_perawat
+  for (const un of unitName) {
+    un.textContent = text;
+  }
 }

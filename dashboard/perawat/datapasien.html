@@ -14,11 +14,10 @@
     <img src="/src/img/Logoputih.svg" class="w-40 h-40 ml-6 " >
 
     <!--header atas Kanan -->
-    
-      <div class="text-white ml-auto mr-4 pr-4">
+      <div class="text-white ml-auto mr-4 pr-4 text-right">
         <a href="profil.html"> 
-        <p>Ns. Nur Wati</p>
-        <p>Perawat Poli Mata</p>
+        <p id="nama-perawat">...</p>
+        <p>Perawat <span class="nama-unit">...</span></p>
         </a>
       </div>
         <a href="profil.html"> 
@@ -736,6 +735,12 @@ searchInput.addEventListener("input", function () {
   });
 });
 </script>
-
-
+<script src="/src/js/rawat-api.js"></script>
+<script src="/src/js/daftar-api.js"></script>
+<script>
+  requireAuth("perawat").then(sesi => {
+    console.log(sesi.userId, sesi.role)
+    ShowDetailProfile(sesi.userId, sesi.role);
+  });
+</script>
 </html>
