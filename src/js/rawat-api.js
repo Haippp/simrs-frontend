@@ -236,6 +236,7 @@ async function checkProfileUser(role, userId) {
 async function ShowDetailProfile(userId, role) {
   const unitNameEls = document.getElementsByClassName("nama-unit");
   const usernameEl  = document.getElementById("nama-user");
+  const usernameElClass  = document.getElementsByClassName("nama-user");
 
   const userProfile = await checkProfileUser(role, userId);
 
@@ -245,11 +246,15 @@ async function ShowDetailProfile(userId, role) {
   }
 
   const unitText = await getUnitName(userProfile.id_unit);
+  const username = userProfile.nama_perawat || userProfile.nama_dokter
 
   if (usernameEl) {
-    usernameEl.innerText = userProfile.nama_perawat || userProfile.nama_dokter || "-";
+    usernameEl.innerText = username
   }
 
+  for (const el of object) {
+    el.textContent = username || "-";
+  }
   for (const el of unitNameEls) {
     el.textContent = unitText || "-";
   }
