@@ -250,10 +250,10 @@ async function ShowDetailProfile(userId, role) {
   const username = userProfile.nama_perawat || userProfile.nama_dokter
 
   if (usernameEl) {
-    usernameEl.innerText = usernameElClass
+    usernameEl.innerText = username
   }
 
-  for (const el of object) {
+  for (const el of usernameElClass) {
     el.textContent = username || "-";
   }
 
