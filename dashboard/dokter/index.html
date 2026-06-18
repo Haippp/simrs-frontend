@@ -16,8 +16,8 @@
 
     <!--header atas Kanan -->
     <div class="text-white ml-auto mr-4 pr-4">
-    <p>Dr. Ahmad Fauzi</p>
-    <p>Dokter Poli Mata</p>
+    <p id="nama-user">Dr. Ahmad Fauzi</p>
+    <p>Dokter <span class="nama-unit"></span></p>
     </div>
   <img src="/src/img/fotoprofil.svg" class=" mr-8" >
 </div>
@@ -29,9 +29,9 @@
 <div class="ml-6 ">
   <p class="bg-[#005461] bg-clip-text text-transparent font-medium ">MENU</p>
   <ul class="mb-4 space-y-6 ">
-    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-5 text-sm slide-left1" ><img src="/src/img/dashboard.svg" class="ml-2"><a href="index.html">Dashboard Dokter</a></li>
-    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-3 text-center flex items-center gap-8 text-sm slide-left2"><img src="/src/img/asesmen.svg" class="ml-3 "> <a href="riwayat-diagnosis.html" >Riyawat Diagnosis</a></li>
-    <li class="bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-8 text-sm slide-left4"><img src="/src/img/laporan.svg" class="ml-3 "> <a href="laporan-harian.html">Laporan Harian</a></li>
+    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-5 text-sm slide-left1" ><img src="/src/img/dashboard.svg" class="ml-2"><a href="./index.html">Dashboard Dokter</a></li>
+    <li class=" bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-3 text-center flex items-center gap-8 text-sm slide-left2"><img src="/src/img/asesmen.svg" class="ml-3 "> <a href="./riwayat-diagnosis.html" >Riyawat Diagnosis</a></li>
+    <li class="bg-white hover:bg-gradient-to-r from-[#3BC0A8] to-[#005461] shadow-md shadow-gray-400 rounded-2xl p-2 text-center flex items-center gap-8 text-sm slide-left4"><img src="/src/img/laporan.svg" class="ml-3 "> <a href="./laporan-harian.html">Laporan Harian</a></li>
   </ul>
 </div>
 </aside>
@@ -1055,5 +1055,13 @@ function closeModal() {
   modal.classList.add("hidden");
   modal.classList.remove("flex");
 }
+</script>
+<script src="/src/js/daftar-api.js"></script>
+<script src="/src/js/rawat-api.js"></script>
+<script>
+  requireAuth("dokter").then(sesi => {
+    console.log(sesi.userId, sesi.role)
+    ShowDetailProfile(sesi.userId, sesi.role);
+  });
 </script>
 </html>
