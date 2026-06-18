@@ -1,6 +1,6 @@
 // const API_HOST = "http://192.168.238.180:8000/api"; // Test Local
-// const API_HOST = "https://rawat4b06.vps-poliban.my.id/api"; // server
-const API_HOST = "https://8e59-2404-c0-c201-ad34-41ca-403b-fc3-3216.ngrok-free.app/api"; // ngrok
+const API_HOST = "https://rawat4b06.vps-poliban.my.id/api"; // server
+// const API_HOST = "https://8e59-2404-c0-c201-ad34-41ca-403b-fc3-3216.ngrok-free.app/api"; // ngrok
 
 // ------------------------------------------------------------
 //  Header default — dipakai di semua request

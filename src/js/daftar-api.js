@@ -2,7 +2,8 @@
 //  daftar-api.js — Kumpulan fungsi API untuk SIMRS
 // ============================================================
 
-const API_BASE_URL = "https://cdfb-2404-c0-c201-ad34-41ca-403b-fc3-3216.ngrok-free.app/api";
+const API_BASE_URL = "https://daftar4b06.vps-poliban.my.id/api";
+// const API_BASE_URL = "https://cdfb-2404-c0-c201-ad34-41ca-403b-fc3-3216.ngrok-free.app/api";
 
 // ------------------------------------------------------------
 //  Utilitas Cookie
