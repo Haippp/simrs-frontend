@@ -841,7 +841,13 @@ document.getElementById("downloadExcel").addEventListener("click", function () {
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-
+<script src="/src/js/daftar-api.js"></script>
+<script src="/src/js/rawat-api.js"></script>
+<script>
+  requireAuth("dokter").then(sesi => {
+    ShowDetailProfile(sesi.userId, sesi.role);
+  });
+</script>
 <style>
   html {
   scrollbar-width: none; /* Firefox */

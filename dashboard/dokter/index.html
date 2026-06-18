@@ -1060,7 +1060,6 @@ function closeModal() {
 <script src="/src/js/rawat-api.js"></script>
 <script>
   requireAuth("dokter").then(sesi => {
-    console.log(sesi.userId, sesi.role)
     ShowDetailProfile(sesi.userId, sesi.role);
   });
 </script>

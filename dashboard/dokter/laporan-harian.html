@@ -314,4 +314,11 @@ function downloadPDF() {
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="/src/js/daftar-api.js"></script>
+<script src="/src/js/rawat-api.js"></script>
+<script>
+  requireAuth("dokter").then(sesi => {
+    ShowDetailProfile(sesi.userId, sesi.role);
+  });
+</script>
 </html>
